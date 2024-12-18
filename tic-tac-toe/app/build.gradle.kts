@@ -7,6 +7,8 @@ plugins {
 android {
     namespace = "com.example.tic_tac_toe"
     compileSdk = 34
+    dataBinding.enable = true
+    viewBinding { enable = true }
 
     defaultConfig {
         applicationId = "com.example.tic_tac_toe"
