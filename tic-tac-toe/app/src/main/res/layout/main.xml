@@ -11,7 +11,7 @@
         android:id="@+id/turnTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="תור X"
+        android:text="תור ?"
         android:textColor="@color/black"
         android:textSize="40sp"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -35,21 +35,21 @@
 
             <Button
                 android:id="@+id/a1"
-                style="@style/column" />
+                style="@style/squareButton"/>
 
             <View
                 style="@style/verticalLine"/>
 
             <Button
                 android:id="@+id/a2"
-                style="@style/column" />
+                style="@style/squareButton" />
 
             <View
                 style="@style/verticalLine"/>
 
             <Button
                 android:id="@+id/a3"
-                style="@style/column" />
+                style="@style/squareButton" />
 
         </LinearLayout>
 
@@ -61,21 +61,21 @@
 
             <Button
                 android:id="@+id/b1"
-                style="@style/column" />
+                style="@style/squareButton" />
 
             <View
                 style="@style/verticalLine"/>
 
             <Button
                 android:id="@+id/b2"
-                style="@style/column" />
+                style="@style/squareButton" />
 
             <View
                 style="@style/verticalLine"/>
 
             <Button
                 android:id="@+id/b3"
-                style="@style/column" />
+                style="@style/squareButton" />
 
         </LinearLayout>
 
@@ -87,21 +87,21 @@
 
             <Button
                 android:id="@+id/c1"
-                style="@style/column" />
+                style="@style/squareButton" />
 
             <View
                 style="@style/verticalLine"/>
 
             <Button
                 android:id="@+id/c2"
-                style="@style/column" />
+                style="@style/squareButton" />
 
             <View
                 style="@style/verticalLine"/>
 
             <Button
                 android:id="@+id/c3"
-                style="@style/column" />
+                style="@style/squareButton" />
 
         </LinearLayout>
 
