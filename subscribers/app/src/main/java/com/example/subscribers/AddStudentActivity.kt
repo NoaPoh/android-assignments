@@ -1,9 +1,13 @@
 package com.example.subscribers
 
 import Student
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.example.subscribers.databinding.ActivityAddStudentBinding
+import com.example.subscribers.databinding.ActivityStudentListBinding
 
 
 class AddStudentActivity : AppCompatActivity() {
@@ -12,10 +16,9 @@ class AddStudentActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_student)
         binding = ActivityAddStudentBinding.inflate(layoutInflater)
-
-        binding.saveButton.setOnClickListener {
+        setContentView(binding.root)
+        val listener = View.OnClickListener { v ->
             val name = binding.studentNameEditText.text.toString()
             val id = binding.studentIdEditText.text.toString()
 
@@ -27,5 +30,7 @@ class AddStudentActivity : AppCompatActivity() {
                 // Show error message
             }
         }
+
+        binding.saveButton.setOnClickListener(listener)
     }
 }

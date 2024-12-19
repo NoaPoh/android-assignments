@@ -10,6 +10,6 @@
         </activity>
         <activity android:name=".AddStudentActivity" />
         <activity android:name=".StudentDetailsActivity" />
-<!--        <activity android:name=".EditStudentActivity" />-->
+        <activity android:name=".EditStudentActivity" />
     </application>
 </manifest>

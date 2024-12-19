@@ -7,6 +7,9 @@ import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatCheckBox
+import androidx.appcompat.widget.AppCompatImageView
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.subscribers.R
 
@@ -18,10 +21,10 @@ class StudentAdapter(
 
     // ViewHolder class to hold references to UI components
     class StudentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val studentImage: ImageView = itemView.findViewById(R.id.studentImageView)
-        val studentName: TextView = itemView.findViewById(R.id.studentNameTextView)
-        val studentId: TextView = itemView.findViewById(R.id.studentIdTextView)
-        val studentCheckBox: CheckBox = itemView.findViewById(R.id.checkBox)
+        val studentImage = itemView.findViewById<AppCompatImageView>(R.id.studentImageView)
+        val studentName = itemView.findViewById<AppCompatTextView>(R.id.nameTextView)
+        val studentId: AppCompatTextView = itemView.findViewById(R.id.idTextView)
+        val studentCheckBox: AppCompatCheckBox = itemView.findViewById(R.id.checkBox)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StudentViewHolder {
