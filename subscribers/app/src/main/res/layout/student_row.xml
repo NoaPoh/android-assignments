@@ -7,7 +7,7 @@
         android:id="@+id/studentImageView"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:src="@drawable/dog" />
+        android:src="@drawable/student" />
 
     <LinearLayout
         android:layout_width="0dp"

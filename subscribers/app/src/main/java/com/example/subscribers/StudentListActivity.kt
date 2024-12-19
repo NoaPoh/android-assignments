@@ -34,8 +34,10 @@ class StudentListActivity : AppCompatActivity() {
     }
 
     private fun openStudentDetails(position: Int) {
-        val intent = Intent(this, StudentDetailsActivity::class.java)
-        intent.putExtra("studentIndex", position)
+        val intent = Intent(this, EditStudentActivity::class.java)
+        val student = StudentRepository.getAllStudents()[position]
+
+        intent.putExtra("student", student)
         startActivity(intent)
     }
 

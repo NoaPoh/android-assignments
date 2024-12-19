@@ -35,7 +35,7 @@ class StudentAdapter(
         holder.studentName.text = student.name
         holder.studentId.text = "ID: ${student.id}"
         holder.studentCheckBox.isChecked = student.isChecked
-        holder.studentImage.setImageResource(R.drawable.dog)
+        holder.studentImage.setImageResource(R.drawable.student)
 
         // Set click listeners
         holder.itemView.setOnClickListener { onItemClicked(position) }
