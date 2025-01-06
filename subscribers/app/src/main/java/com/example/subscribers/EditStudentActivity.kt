@@ -3,6 +3,7 @@ package com.example.subscribers
 import Student
 import android.os.Build
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.subscribers.databinding.ActivityEditStudentBinding
 
@@ -11,8 +12,8 @@ class EditStudentActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_edit_student)
         binding = ActivityEditStudentBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val student = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             intent.getParcelableExtra("student", Student::class.java)
@@ -24,7 +25,7 @@ class EditStudentActivity : AppCompatActivity() {
         binding.studentNameEditText.setText(student?.name)
         binding.studentIdEditText.setText(student?.id)
 
-        binding.updateButton.setOnClickListener {
+        val updateListener = View.OnClickListener { v ->
             val updatedName = binding.studentNameEditText.text.toString()
             val updatedId = binding.studentIdEditText.text.toString()
             val index = StudentRepository.getAllStudents().withIndex().find { it.value == student }?.index ?: 0
@@ -37,6 +38,8 @@ class EditStudentActivity : AppCompatActivity() {
                 // Show error message
             }
         }
+
+        binding.updateButton.setOnClickListener(updateListener)
 
         binding.deleteButton.setOnClickListener {
             val index = StudentRepository.getAllStudents().withIndex().find { it.value == student }?.index ?: 0
