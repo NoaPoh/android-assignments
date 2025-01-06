@@ -1,11 +1,19 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("kotlin-parcelize")
 }
 
 android {
     namespace = "com.example.subscribers"
     compileSdk = 34
+
+    buildFeatures {
+        viewBinding = true
+        compose = true
+    }
+    dataBinding.enable = true
+    viewBinding.enable = true
 
     defaultConfig {
         applicationId = "com.example.subscribers"
@@ -35,6 +43,10 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        dataBinding = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.14"
     }
 }
 
@@ -46,6 +58,8 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.androidx.runtime.android)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
