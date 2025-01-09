@@ -10,19 +10,20 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.subscribers.R
 
+
+// ViewHolder class to hold references to UI components
+class StudentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    val studentImage: AppCompatImageView = itemView.findViewById(R.id.studentImageView)
+    val studentName: AppCompatTextView = itemView.findViewById(R.id.nameTextView)
+    val studentId: AppCompatTextView = itemView.findViewById(R.id.idTextView)
+    val studentCheckBox: AppCompatCheckBox = itemView.findViewById(R.id.checkBox)
+}
+
 class StudentAdapter(
     private val studentList: List<Student>,
     private val onItemClicked: (Int) -> Unit,
-    private val onCheckChanged: (Int) -> Unit
-) : RecyclerView.Adapter<StudentAdapter.StudentViewHolder>() {
-
-    // ViewHolder class to hold references to UI components
-    class StudentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val studentImage = itemView.findViewById<AppCompatImageView>(R.id.studentImageView)
-        val studentName = itemView.findViewById<AppCompatTextView>(R.id.nameTextView)
-        val studentId: AppCompatTextView = itemView.findViewById(R.id.idTextView)
-        val studentCheckBox: AppCompatCheckBox = itemView.findViewById(R.id.checkBox)
-    }
+    private val onCheckChanged: (Int, Boolean) -> Unit
+) : RecyclerView.Adapter<StudentViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StudentViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -40,7 +41,7 @@ class StudentAdapter(
         // Set click listeners
         holder.itemView.setOnClickListener { onItemClicked(position) }
         holder.studentCheckBox.setOnCheckedChangeListener { _, isChecked ->
-            onCheckChanged(position)
+            onCheckChanged(position, isChecked)
         }
     }
 
