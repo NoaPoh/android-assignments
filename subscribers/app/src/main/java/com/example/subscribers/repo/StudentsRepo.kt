@@ -1,7 +1,19 @@
+package com.example.subscribers.repo
+
+import Student
+
 object StudentRepository {
     private val students = mutableListOf<Student>()
 
     fun getAllStudents(): List<Student> = students
+
+    fun getStudentByIndex(index: Int): Student? {
+        return try {
+            students[index]
+        } catch (e: IndexOutOfBoundsException) {
+            null
+        }
+    }
 
     fun addStudent(student: Student) {
         students.add(student)

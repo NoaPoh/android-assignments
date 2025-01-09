@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.subscribers.adapters.StudentAdapter
+import com.example.subscribers.repo.StudentRepository
 
 class StudentListActivity : AppCompatActivity() {
 
@@ -22,7 +23,7 @@ class StudentListActivity : AppCompatActivity() {
         adapter = StudentAdapter(
             StudentRepository.getAllStudents(),
             onItemClicked = { position -> openStudentDetails(position) },
-            onCheckChanged = { position -> toggleStudentCheck(position) }
+            onCheckChanged = { position, isChecked -> changeStudentChecked(position, isChecked) }
         )
 
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -34,16 +35,15 @@ class StudentListActivity : AppCompatActivity() {
     }
 
     private fun openStudentDetails(position: Int) {
-        val intent = Intent(this, EditStudentActivity::class.java)
-        val student = StudentRepository.getAllStudents()[position]
+        val intent = Intent(this, StudentDetailsActivity::class.java)
 
-        intent.putExtra("student", student)
+        intent.putExtra("position", position)
         startActivity(intent)
     }
 
-    private fun toggleStudentCheck(position: Int) {
+    private fun changeStudentChecked(position: Int, isChecked:Boolean) {
         val student = StudentRepository.getAllStudents()[position]
-        student.isChecked = !student.isChecked
+        student.isChecked = isChecked
     }
 
     override fun onResume() {

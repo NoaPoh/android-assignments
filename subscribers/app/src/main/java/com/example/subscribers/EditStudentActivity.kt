@@ -1,11 +1,13 @@
 package com.example.subscribers
 
 import Student
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.subscribers.databinding.ActivityEditStudentBinding
+import com.example.subscribers.repo.StudentRepository
 
 class EditStudentActivity : AppCompatActivity() {
     private lateinit var binding : ActivityEditStudentBinding
@@ -15,25 +17,26 @@ class EditStudentActivity : AppCompatActivity() {
         binding = ActivityEditStudentBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val student = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            intent.getParcelableExtra("student", Student::class.java)
-        } else {
-            @Suppress("DEPRECATION")
-            intent.getParcelableExtra("student") as? Student
-        }
+
+        val position = intent.getIntExtra("position", -1)
+
+        val student = StudentRepository.getStudentByIndex(position)
 
         binding.studentNameEditText.setText(student?.name)
         binding.studentIdEditText.setText(student?.id)
+        binding.studentCheckbox.isChecked = student?.isChecked == true
 
-        val updateListener = View.OnClickListener { v ->
+        val updateListener = View.OnClickListener { _ ->
             val updatedName = binding.studentNameEditText.text.toString()
             val updatedId = binding.studentIdEditText.text.toString()
-            val index = StudentRepository.getAllStudents().withIndex().find { it.value == student }?.index ?: 0
+            val updatedChecked = binding.studentCheckbox.isChecked
 
             if (updatedName.isNotBlank() && updatedId.isNotBlank()) {
-                val updatedStudent = Student(updatedId, updatedName)
-                StudentRepository.updateStudent(index, updatedStudent)
-                finish()
+                val updatedStudent = Student(updatedId, updatedName, updatedChecked)
+                StudentRepository.updateStudent(position, updatedStudent)
+
+                goBackToStudentsList()
+
             } else {
                 // Show error message
             }
@@ -42,16 +45,19 @@ class EditStudentActivity : AppCompatActivity() {
         binding.updateButton.setOnClickListener(updateListener)
 
         binding.deleteButton.setOnClickListener {
-            val index = StudentRepository.getAllStudents().withIndex().find { it.value == student }?.index ?: 0
-
-            student?.id?.let { id ->
-                StudentRepository.deleteStudent(index)
-            }
-            finish()
+            StudentRepository.deleteStudent(position)
+            goBackToStudentsList()
         }
 
-        binding.backButton.setOnClickListener {
+        binding.cancelButton.setOnClickListener {
             finish()
         }
+    }
+
+    private fun goBackToStudentsList() {
+        val intent = Intent(this, StudentListActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP // Clear all activities above StudentListActivity in stack
+        startActivity(intent)
+        finish()
     }
 }

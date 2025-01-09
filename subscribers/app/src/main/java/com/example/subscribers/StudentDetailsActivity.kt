@@ -1,28 +1,35 @@
 package com.example.subscribers
 
-import Student
-import android.os.Build
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.subscribers.databinding.ActivityStudentDetailsBinding
+import com.example.subscribers.repo.StudentRepository
 
 class StudentDetailsActivity : AppCompatActivity() {
     private lateinit var binding : ActivityStudentDetailsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_student_details)
         binding = ActivityStudentDetailsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val student = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            intent.getParcelableExtra("student", Student::class.java)
-        } else {
-            @Suppress("DEPRECATION")
-            intent.getParcelableExtra("student") as? Student
-        }
+        val position = intent.getIntExtra("position", -1)
+
+        val student = StudentRepository.getStudentByIndex(position)
 
         binding.studentNameTextView.text = student?.name
         binding.studentIdTextView.text = student?.id
+        binding.studentCheckbox.isChecked = student?.isChecked == true
+
+        // makes checkbox readonly
+        binding.studentCheckbox.setOnTouchListener { _, _ -> true }
+
+        binding.editButton.setOnClickListener {
+            val intent = Intent(this, EditStudentActivity::class.java)
+            intent.putExtra("position", position)
+            startActivity(intent)
+        }
 
         binding.backButton.setOnClickListener {
             finish()

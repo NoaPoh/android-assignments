@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.subscribers.databinding.ActivityAddStudentBinding
+import com.example.subscribers.repo.StudentRepository
 
 
 class AddStudentActivity : AppCompatActivity() {
@@ -29,5 +30,7 @@ class AddStudentActivity : AppCompatActivity() {
         }
 
         binding.saveButton.setOnClickListener(listener)
+
+        binding.cancelButton.setOnClickListener { finish() }
     }
 }

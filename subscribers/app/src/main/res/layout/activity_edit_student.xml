@@ -17,12 +17,16 @@
         android:layout_height="wrap_content"
         android:hint="Student ID"
         android:inputType="text" />
+    <CheckBox
+        android:id="@+id/studentCheckbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <Button
         android:id="@+id/updateButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Update" />
+        android:text="Save" />
 
     <Button
         android:id="@+id/deleteButton"
@@ -31,8 +35,8 @@
         android:text="Delete" />
 
     <Button
-        android:id="@+id/backButton"
+        android:id="@+id/cancelButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Back" />
+        android:text="Cancle" />
 </LinearLayout>
