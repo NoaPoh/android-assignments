@@ -9,22 +9,6 @@ class Flag {
     @SerializedName("png")
     var imageUrlPng: String? = null
 
-    fun getImageUrlSvg(): String? {
-        return imageUrlSvg
-    }
-
-    fun setImageUrlSvg(imageUrlSvg: String?) {
-        this.imageUrlSvg = imageUrlSvg
-    }
-
-    fun getImageUrlPng(): String? {
-        return imageUrlPng
-    }
-
-    fun setImageUrlPng(imageUrlPng: String?) {
-        this.imageUrlPng = imageUrlPng
-    }
-
     override fun toString(): String {
         return "Flag{" +
                 "imageUrlSvg='" + imageUrlSvg + '\'' +

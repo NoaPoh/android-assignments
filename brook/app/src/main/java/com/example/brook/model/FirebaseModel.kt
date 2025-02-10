@@ -34,11 +34,11 @@ class FirebaseModel internal constructor() {
         mAuth = FirebaseAuth.getInstance()
     }
 
-    fun getAllPostsSince(since: Long, callback: Model.Listener<Any>) {
+    fun getAllPostsSince(since: Long, callback: Model.Listener<LinkedList<Post>?>) {
         db.collection(Post.COLLECTION)
             .whereGreaterThanOrEqualTo(Post.LAST_UPDATED, Timestamp(since, 0)).get()
             .addOnCompleteListener(OnCompleteListener { task: Task<QuerySnapshot>? ->
-                val list = LinkedList<Post?>()
+                val list = LinkedList<Post>()
                 val post: Post? = null
                 if (task!!.isSuccessful() && task.getResult() != null) {
                     val jsonList = task.getResult()
@@ -50,7 +50,7 @@ class FirebaseModel internal constructor() {
                         }
                     }
                 }
-                callback.onComplete(list as Post?)
+                callback.onComplete(list)
             })
         // db.collection(Post.COLLECTION)
         // .whereGreaterThanOrEqualTo(Post.LAST_UPDATED, new Timestamp(since,0))
