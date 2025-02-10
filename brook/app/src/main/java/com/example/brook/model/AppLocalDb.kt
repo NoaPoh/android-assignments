@@ -14,7 +14,7 @@ public abstract class AppLocalDbRepository : RoomDatabase() {
 object AppLocalDb {
     fun getAppDb(): AppLocalDbRepository {
         return Room.databaseBuilder<AppLocalDbRepository>(
-            MyApplication.getMyContext(),
+            MyApplication.getMyContext()!!,
             AppLocalDbRepository::class.java,
             "dbFileName.db"
         )
