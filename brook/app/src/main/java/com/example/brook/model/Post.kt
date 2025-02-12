@@ -147,7 +147,7 @@ class Post {
             try {
                 val newTime = json.get(LAST_UPDATED) as Timestamp?
                 if (newTime != null) {
-                    setLocalLastUpdated(newTime.getSeconds())
+                    setLocalLastUpdated(newTime.seconds)
                 }
             } catch (e: Exception) {
             }
