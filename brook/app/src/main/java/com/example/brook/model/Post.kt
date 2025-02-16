@@ -147,7 +147,7 @@ class Post {
             try {
                 val newTime = json.get(LAST_UPDATED) as Timestamp?
                 if (newTime != null) {
-                    setLocalLastUpdated(newTime.getSeconds())
+                    setLocalLastUpdated(newTime.seconds)
                 }
             } catch (e: Exception) {
             }
@@ -156,12 +156,12 @@ class Post {
 
         fun getLocalLastUpdate(): Long {
             val sharedPref =
-                MyApplication.getMyContext().getSharedPreferences("TAG", Context.MODE_PRIVATE)
+                MyApplication.getMyContext()!!.getSharedPreferences("TAG", Context.MODE_PRIVATE)
             return sharedPref.getLong(LOCAL_LAST_UPDATED, 0)
         }
 
         fun setLocalLastUpdated(newTime: Long) {
-            MyApplication.getMyContext().getSharedPreferences("TAG", Context.MODE_PRIVATE).edit()
+            MyApplication.getMyContext()!!.getSharedPreferences("TAG", Context.MODE_PRIVATE).edit()
                 .putLong(LOCAL_LAST_UPDATED, newTime).apply()
         }
     }
