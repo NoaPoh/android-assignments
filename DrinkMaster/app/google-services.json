@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "815665265399",
+    "project_id": "drinkmaster-d9b3c",
+    "storage_bucket": "drinkmaster-d9b3c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:815665265399:android:7c611143b076ab6db4b1f2",
+        "android_client_info": {
+          "package_name": "com.example.Brook"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_xEOB3JFCOxgkN-0W3w9Qez9MRB3O8C0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
