@@ -17,7 +17,6 @@ import com.example.Brook.R
 import com.squareup.picasso.Picasso
 
 
-
 class BookFragment : Fragment() {
     private lateinit var viewModel: BookViewModel
     private val args by navArgs<BookFragmentArgs>()
@@ -25,10 +24,9 @@ class BookFragment : Fragment() {
     private lateinit var root: View
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        root =  inflater.inflate(R.layout.fragment_book, container, false)
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View {
+        root = inflater.inflate(R.layout.fragment_book, container, false)
         viewModel = ViewModelProvider(this).get(BookViewModel::class.java)
         viewModel.setBook(args.chooseBook)
 
@@ -38,29 +36,28 @@ class BookFragment : Fragment() {
 
         }
         root.findViewById<Button>(R.id.AddReviewButton).setOnClickListener {
-            viewModel.bookDetailsData?.let { book ->
-                val action = bookFragmentDirections.actionBookFragmentToCreateReview(
+            viewModel.bookDetailsData.let { book ->
+                val action = BookFragmentDirections.actionBookFragmentToCreateReview(
                     book.value?.get(0)?.title ?: "Book"
                 )
-                Navigation.findNavController( root.findViewById<Button>(R.id.AddReviewButton)).navigate(action)
+                Navigation.findNavController(root.findViewById<Button>(R.id.AddReviewButton))
+                    .navigate(action)
             }
         }
 
         return root
     }
 
-    fun booksDetails(root: View) {
+    private fun booksDetails(root: View) {
         val bookName: TextView = root.findViewById(R.id.bookTitle)
         val bookAuthor: TextView = root.findViewById(R.id.AuthorName)
-        val bookImage : ImageView = root.findViewById(R.id.bookImage)
-        val imageUrl : String = "https://covers.openlibrary.org/b/id/${bookImage}-L.jpg"
+        val bookImage: ImageView = root.findViewById(R.id.bookImage)
+        val imageUrl = "https://covers.openlibrary.org/b/id/${bookImage}-L.jpg"
 
         viewModel.bookDetailsData.let { book ->
             bookName.text = book.value?.get(0)?.title
             bookAuthor.text = book.value?.get(0)?.author_name!![0]
-            Picasso.get()
-                .load(imageUrl)
-                .into(bookImage)
+            Picasso.get().load(imageUrl).into(bookImage)
             bookAuthor.movementMethod = ScrollingMovementMethod()
         }
     }
