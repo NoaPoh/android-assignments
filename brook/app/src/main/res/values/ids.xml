@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="profile" type="id"/>
+    <item name="ProfileImageView" type="id"/>
+    <item name="UserNameTextView" type="id"/>
+    <item name="MyReviewsButton" type="id"/>
+    <item name="EditProfileButton" type="id"/>
+    <item name="searchView" type="id"/>
+    <item name="SearchTextView" type="id"/>
+    <item name="searchResultsLayout" type="id"/>
+    <item name="bookPicButton" type="id"/>
+    <item name="layoutTextFirstNameEditProfile" type="id"/>
+    <item name="editTextFirstNameEditProfile" type="id"/>
+
+</resources>
