@@ -91,7 +91,7 @@
         android:id="@+id/saveButton"
         android:layout_width="330dp"
         android:layout_height="67dp"
-        android:backgroundTint="@color/white"
+        android:backgroundTint="@color/theme_color"
         android:text="Save"
         android:textColor="@color/black"
         android:textSize="20sp"
