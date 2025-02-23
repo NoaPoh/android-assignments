@@ -11,8 +11,7 @@ import java.util.concurrent.Executors
 class ReviewModel private constructor() {
 
     enum class LoadingState {
-        LOADING,
-        LOADED
+        LOADING, LOADED
     }
 
     private val database = AppLocalDatabase.db
@@ -57,8 +56,7 @@ class ReviewModel private constructor() {
                     }
 
                     review.timestamp?.let {
-                        if (time < it)
-                            time = review.timestamp ?: System.currentTimeMillis()
+                        if (time < it) time = review.timestamp ?: System.currentTimeMillis()
                     }
                     Review.lastUpdated = time
                 }
@@ -98,7 +96,7 @@ class ReviewModel private constructor() {
     }
 
     fun getReviewImage(imageId: String, callback: (Uri) -> Unit) {
-        firebaseModel.getImage(imageId, callback);
+        firebaseModel.getImage(imageId, callback)
     }
 
 }

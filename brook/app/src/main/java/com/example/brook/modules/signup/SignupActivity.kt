@@ -81,15 +81,15 @@ class SignupActivity : AppCompatActivity() {
 
         // Define all button listeners
         defineImageSelectionCallBack()
-        signUpButton?.setOnClickListener {
+        signUpButton.setOnClickListener {
             checkNewUserDetails()
         }
-        signInButton?.setOnClickListener {
+        signInButton.setOnClickListener {
             val intent = Intent(this@SignupActivity, LoginActivity::class.java)
             startActivity(intent)
             finish()
         }
-        pickProfilepicButton?.setOnClickListener {
+        pickProfilepicButton.setOnClickListener {
             Log.i("buttonClick", "pick profile pick button in signup screen clicked")
             openGallery()
 
@@ -127,49 +127,37 @@ class SignupActivity : AppCompatActivity() {
 
 
         val checkUserValidation = userValidation(
-            firstNameValue,
-            lastNameValue,
-            emailValue,
-            passwordValue,
-            passwordConfirmationValue
+            firstNameValue, lastNameValue, emailValue, passwordValue, passwordConfirmationValue
         )
 
         if (checkUserValidation) {
             Log.i("buttonClick", "signup button in signup screen clicked")
-            Log.i("signupSubmit", "first Name Input is:" + firstNameValue)
-            Log.i("signupSubmit", "Last Name Input is:" + lastNameValue)
-            Log.i("signupSubmit", "email input is:" + emailValue)
-            Log.i("signupSubmit", "password Input is:" + passwordValue)
-            Log.i("signupSubmit", "password Confirmation Input is:" + passwordConfirmationValue)
+            Log.i("signupSubmit", "first Name Input is:$firstNameValue")
+            Log.i("signupSubmit", "Last Name Input is:$lastNameValue")
+            Log.i("signupSubmit", "email input is:$emailValue")
+            Log.i("signupSubmit", "password Input is:$passwordValue")
+            Log.i("signupSubmit", "password Confirmation Input is:$passwordConfirmationValue")
             auth.createUserWithEmailAndPassword(emailValue, passwordValue).addOnSuccessListener {
                 val authenticatedUser = it.user!!
 
-                val profileChange = UserProfileChangeRequest.Builder()
-                    .setPhotoUri(imageURI)
-                    .setDisplayName("$firstNameValue $lastNameValue")
-                    .build()
+                val profileChange = UserProfileChangeRequest.Builder().setPhotoUri(imageURI)
+                    .setDisplayName("$firstNameValue $lastNameValue").build()
 
                 authenticatedUser.updateProfile(profileChange)
 
                 UserModel.instance.addUser(
-                    User(authenticatedUser.uid, firstNameValue, lastNameValue),
-                    imageURI!!
+                    User(authenticatedUser.uid, firstNameValue, lastNameValue), imageURI!!
                 ) {
                     Toast.makeText(
-                        this@SignupActivity,
-                        "Register Successful",
-                        Toast.LENGTH_SHORT
-                    )
-                        .show()
+                        this@SignupActivity, "Register Successful", Toast.LENGTH_SHORT
+                    ).show()
                     val intent = Intent(this@SignupActivity, MainActivity::class.java)
                     startActivity(intent)
                     finish()
                 }
             }.addOnFailureListener {
                 Toast.makeText(
-                    this@SignupActivity,
-                    "Register Failed, " + it.message,
-                    Toast.LENGTH_SHORT
+                    this@SignupActivity, "Register Failed, " + it.message, Toast.LENGTH_SHORT
                 ).show()
             }
 
@@ -227,9 +215,7 @@ class SignupActivity : AppCompatActivity() {
         }
         if (imageURI == null) {
             Toast.makeText(
-                this@SignupActivity,
-                "You must select Profile Image",
-                Toast.LENGTH_SHORT
+                this@SignupActivity, "You must select Profile Image", Toast.LENGTH_SHORT
             ).show()
             return false
         }
@@ -237,6 +223,7 @@ class SignupActivity : AppCompatActivity() {
     }
 
     // Func to move for the gallery
+    @RequiresExtension(extension = Build.VERSION_CODES.R, version = 2)
     private fun openGallery() {
         val intent = Intent(MediaStore.ACTION_PICK_IMAGES)
         imageSelectionCallBack.launch(intent)
@@ -273,9 +260,7 @@ class SignupActivity : AppCompatActivity() {
                     }
                 } catch (e: Exception) {
                     Toast.makeText(
-                        this@SignupActivity,
-                        "Error processing result",
-                        Toast.LENGTH_SHORT
+                        this@SignupActivity, "Error processing result", Toast.LENGTH_SHORT
                     ).show()
                 }
             }

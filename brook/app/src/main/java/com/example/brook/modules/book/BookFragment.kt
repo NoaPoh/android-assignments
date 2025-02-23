@@ -18,9 +18,9 @@ import com.squareup.picasso.Picasso
 
 
 
-class bookFragment : Fragment() {
+class BookFragment : Fragment() {
     private lateinit var viewModel: BookViewModel
-    private val args by navArgs<bookFragmentArgs>()
+    private val args by navArgs<BookFragmentArgs>()
 
     private lateinit var root: View
 

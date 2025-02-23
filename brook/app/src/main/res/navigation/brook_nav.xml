@@ -30,7 +30,7 @@
         tools:layout="@layout/fragment_books_feed" />
     <fragment
         android:id="@+id/bookFragment"
-        android:name="com.example.brook.modules.book.bookFragment"
+        android:name="com.example.brook.modules.book.BookFragment"
         android:label="bookFragment">
         <action
             android:id="@+id/action_bookFragment_to_create_review"

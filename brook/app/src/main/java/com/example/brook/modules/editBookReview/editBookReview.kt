@@ -44,9 +44,7 @@ class editBookReview : Fragment() {
                 val maxCanvasSize = 5 * 1024 * 1024 // 5MB
                 if (imageSize > maxCanvasSize) {
                     Toast.makeText(
-                        requireContext(),
-                        "Selected image is too large",
-                        Toast.LENGTH_SHORT
+                        requireContext(), "Selected image is too large", Toast.LENGTH_SHORT
                     ).show()
                 } else {
                     viewModel.selectedImageURI.postValue(imageUri)
@@ -63,9 +61,8 @@ class editBookReview : Fragment() {
 
     @RequiresExtension(extension = Build.VERSION_CODES.R, version = 2)
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View {
         _binding = FragmentEditBookReviewBinding.inflate(inflater, container, false)
         val view = binding.root
         star1 = binding.star1EditBookReview
@@ -137,13 +134,12 @@ class editBookReview : Fragment() {
         }
 
         viewModel.descriptionError.observe(viewLifecycleOwner) {
-            if (it.isNotEmpty())
-                binding.editTextBookDescription.error = it
+            if (it.isNotEmpty()) binding.editTextBookDescription.error = it
         }
 
     }
 
-    public fun onStarClicked(view: ImageView) {
+    private fun onStarClicked(view: ImageView) {
         Log.d("StarClick", "Star clicked") // Add this line
         val clickedStar = view
         val clickedStarPosition = clickedStar.tag.toString().toInt()

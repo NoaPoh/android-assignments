@@ -45,17 +45,17 @@ class LoginActivity : AppCompatActivity() {
         forgotPasswordButton = findViewById(R.id.ForgotPasswordPageButton)
         signUpButton = findViewById(R.id.toSignupPageButton)
 
-        signinButton?.setOnClickListener {
+        signinButton.setOnClickListener {
             Log.i("buttonClick", "signin button in signin screen clicked")
             checkLoginUser()
         }
 
-        signUpButton?.setOnClickListener {
+        signUpButton.setOnClickListener {
             Log.i("buttonClick", "signup button in signin screen clicked")
             val intent = Intent(this@LoginActivity, SignupActivity::class.java)
             startActivity(intent)
         }
-        forgotPasswordButton?.setOnClickListener {
+        forgotPasswordButton.setOnClickListener {
             Log.i("buttonClick", "Forgot password button in signin screen clicked")
             val intent = Intent(this@LoginActivity, ForgotPasswordActivity::class.java)
             startActivity(intent)
@@ -67,12 +67,12 @@ class LoginActivity : AppCompatActivity() {
 
         emailAddressInputLayout = findViewById(R.id.layoutLoginTextEmail)
         emailAddressInputEditText = findViewById(R.id.editLoginTextEmailAddress)
-        val emailValue: String = emailAddressInputEditText?.text.toString().trim()
+        val emailValue: String = emailAddressInputEditText.text.toString().trim()
 
 
         passwordInputEditText = findViewById(R.id.editLoginTextPassword)
         passwordInputLayout = findViewById(R.id.layoutLoginTextPassword)
-        val passwordValue: String = passwordInputEditText?.text.toString().trim()
+        val passwordValue: String = passwordInputEditText.text.toString().trim()
 
         val checkUserValidation = loginUserValidation(emailValue, passwordValue)
 
@@ -85,9 +85,7 @@ class LoginActivity : AppCompatActivity() {
                 loggedInHandler()
             }.addOnFailureListener {
                 Toast.makeText(
-                    this@LoginActivity,
-                    "Your Email or Password is incorrect!",
-                    Toast.LENGTH_SHORT
+                    this@LoginActivity, "Your Email or Password is incorrect!", Toast.LENGTH_SHORT
                 ).show()
             }
 
@@ -102,9 +100,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun loggedInHandler() {
         Toast.makeText(
-            this@LoginActivity,
-            "Welcome ${auth.currentUser?.displayName}!",
-            Toast.LENGTH_SHORT
+            this@LoginActivity, "Welcome ${auth.currentUser?.displayName}!", Toast.LENGTH_SHORT
         ).show()
         val intent = Intent(this@LoginActivity, MainActivity::class.java)
         startActivity(intent)
@@ -112,8 +108,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun loginUserValidation(
-        email: String,
-        password: String
+        email: String, password: String
     ): Boolean {
 
         // Basic checks

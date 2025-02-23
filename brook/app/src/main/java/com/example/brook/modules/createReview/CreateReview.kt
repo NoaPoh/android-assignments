@@ -39,8 +39,7 @@ class CreateReview : Fragment() {
 
     @RequiresExtension(extension = Build.VERSION_CODES.R, version = 2)
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         _binding = FragmentCreateReviewBinding.inflate(inflater, container, false)
         val view = binding.root
@@ -86,17 +85,13 @@ class CreateReview : Fragment() {
         binding.star5CreateReview.setOnClickListener { onStarClicked(star5) }
 
         viewModel.bookdescriptionError.observe(viewLifecycleOwner) {
-            if (it.isNotEmpty())
-                binding.layoutTextReviewDescriptionCreateReview.error = it
+            if (it.isNotEmpty()) binding.layoutTextReviewDescriptionCreateReview.error = it
         }
 
         viewModel.imageError.observe(viewLifecycleOwner) {
-            if (it.isNotEmpty())
-                Toast.makeText(
-                    requireContext(),
-                    viewModel.imageError.value,
-                    Toast.LENGTH_SHORT
-                ).show()
+            if (it.isNotEmpty()) Toast.makeText(
+                requireContext(), viewModel.imageError.value, Toast.LENGTH_SHORT
+            ).show()
         }
     }
 
@@ -131,9 +126,7 @@ class CreateReview : Fragment() {
                 // Handle the case when chooseBook argument is missing
                 Log.e("create_review", "chooseBook argument is missing")
                 Toast.makeText(
-                    requireContext(),
-                    "Error: Choose Book argument is missing",
-                    Toast.LENGTH_SHORT
+                    requireContext(), "Error: Choose Book argument is missing", Toast.LENGTH_SHORT
                 ).show()
             }
         }
@@ -161,9 +154,7 @@ class CreateReview : Fragment() {
                     val maxCanvasSize = 5 * 1024 * 1024 // 5MB
                     if (imageSize > maxCanvasSize) {
                         Toast.makeText(
-                            requireContext(),
-                            "Selected image is too large",
-                            Toast.LENGTH_SHORT
+                            requireContext(), "Selected image is too large", Toast.LENGTH_SHORT
                         ).show()
                     } else {
                         viewModel.ImageURI.postValue(imageUri)

@@ -44,8 +44,7 @@ class UserModel private constructor() {
                 }
 
                 user.lastModified?.let {
-                    if (time < it)
-                        time = user.lastModified ?: System.currentTimeMillis()
+                    if (time < it) time = user.lastModified ?: System.currentTimeMillis()
                 }
                 User.lastModified = time
             }
@@ -67,13 +66,13 @@ class UserModel private constructor() {
     }
 
     fun getUserImage(imageId: String, callback: (Uri) -> Unit) {
-        firebaseModel.getImage(imageId, callback);
+        firebaseModel.getImage(imageId, callback)
     }
 
-    fun addUser(user: User, ImageUri: Uri, callback: () -> Unit) {
+    fun addUser(user: User, imageUri: Uri, callback: () -> Unit) {
         try {
             firebaseModel.addUser(user) {
-                firebaseModel.addUserImage(user.id, ImageUri) {
+                firebaseModel.addUserImage(user.id, imageUri) {
                     refreshAllUsers()
                     callback()
                 }
