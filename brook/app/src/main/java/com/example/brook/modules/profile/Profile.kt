@@ -1,4 +1,4 @@
-package com.example.Brook.modules.profile
+package com.example.brook.modules.profile
 
 import android.content.Intent
 import android.os.Bundle
@@ -13,7 +13,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.navigation.Navigation
 import com.example.Brook.R
-import com.example.Brook.modules.login.LoginActivity
+import com.example.brook.modules.login.LoginActivity
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.google.firebase.storage.storage
@@ -34,7 +34,7 @@ class Profile : Fragment() {
 
     }
 
-    private fun setUI(root: View) : View{
+    private fun setUI(root: View): View {
 
         root.findViewById<TextView>(R.id.UserNameTextView).text = "${auth.currentUser?.displayName}"
 

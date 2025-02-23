@@ -1,4 +1,4 @@
-package com.example.Brook.data.book
+package com.example.brook.data.book
 
 import java.net.URLEncoder
 import java.nio.charset.StandardCharsets
@@ -13,7 +13,8 @@ class BookService {
         val instance: BookService = BookService()
     }
 
-    private val apiService: BookApiService = RetrofitClient.retrofit.create(BookApiService::class.java)
+    private val apiService: BookApiService =
+        RetrofitClient.retrofit.create(BookApiService::class.java)
 
     fun searchBook(strBook: String, callback: (MutableList<Book>) -> Unit) {
         val encodedBookName = URLEncoder.encode(strBook, StandardCharsets.UTF_8.toString())
@@ -35,7 +36,7 @@ class BookService {
     }
 
     fun searchBookByID(BookID: String, callback: (MutableList<Book>) -> Unit) {
-        val call: Call<BooksResponse> = apiService.searchBookbYID(BookID)
+        val call: Call<BooksResponse> = apiService.searchBookByID(BookID)
         call.enqueue(object : Callback<BooksResponse> {
             override fun onResponse(call: Call<BooksResponse>, response: Response<BooksResponse>) {
                 if (response.isSuccessful) {
@@ -51,6 +52,7 @@ class BookService {
             }
         })
     }
+
     object RetrofitClient {
         private const val BASE_URL = "https://openlibrary.org/"
 

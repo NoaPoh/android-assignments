@@ -1,12 +1,12 @@
-package com.example.Brook.modules.EditProfile
+package com.example.brook.modules.editProfile
 
 import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.Brook.data.user.User
-import com.example.Brook.data.user.UserModel
+import com.example.brook.data.user.User
+import com.example.brook.data.user.UserModel
 import com.google.firebase.Firebase
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.auth.auth
@@ -16,7 +16,8 @@ class EditProfileViewModel : ViewModel() {
     var imageChanged = false
     var selectedImageURI: MutableLiveData<Uri> = MutableLiveData()
     var user: LiveData<User> = UserModel.instance.getCurrentUser()
-//
+
+    //
     var firstName: String? = "sheleg"
     var lastName: String? = null
     var firstNameError = MutableLiveData("")

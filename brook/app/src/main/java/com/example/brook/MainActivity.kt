@@ -1,15 +1,11 @@
-package com.example.Brook
+package com.example.brook
 
-import android.annotation.SuppressLint
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
-import android.widget.Button
-import android.widget.EditText
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
+import com.example.Brook.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
@@ -18,13 +14,13 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.i("creation","creating ypi screen")
+        Log.i("creation", "creating ypi screen")
         setContentView(R.layout.activity_main)
         setUI()
 
     }
 
-    fun setUI () {
+    fun setUI() {
 
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation)
         val navHostFragment =

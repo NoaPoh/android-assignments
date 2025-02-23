@@ -1,4 +1,4 @@
-package com.example.Brook.modules.createReview
+package com.example.brook.modules.createReview
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -21,10 +21,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.Brook.R
 import com.example.Brook.databinding.FragmentCreateReviewBinding
+import com.example.Brook.modules.createReview.CreateReviewViewModel
 
-class create_review : Fragment() {
+class CreateReview : Fragment() {
     private var _binding: FragmentCreateReviewBinding? = null
-    private val args by navArgs<create_reviewArgs>()
+    private val args by navArgs<CreateReviewArgs>()
     private val binding get() = _binding!!
     private lateinit var viewModel: CreateReviewViewModel
 
@@ -41,7 +42,7 @@ class create_review : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentCreateReviewBinding.inflate(inflater, container, false )
+        _binding = FragmentCreateReviewBinding.inflate(inflater, container, false)
         val view = binding.root
         viewModel = ViewModelProvider(this)[CreateReviewViewModel::class.java]
 
@@ -68,7 +69,7 @@ class create_review : Fragment() {
         star4.tag = 4
         star5.tag = 5
 
-        when(viewModel.grade) {
+        when (viewModel.grade) {
             in 1..5 -> {
                 star1.setImageResource(if (viewModel.grade!! >= 1) R.drawable.baseline_filled_star_24 else R.drawable.baseline_empty_star_border_24)
                 star2.setImageResource(if (viewModel.grade!! >= 2) R.drawable.baseline_filled_star_24 else R.drawable.baseline_empty_star_border_24)
@@ -78,11 +79,11 @@ class create_review : Fragment() {
             }
         }
 
-        binding.star1CreateReview.setOnClickListener{onStarClicked(star1)}
-        binding.star2CreateReview.setOnClickListener{onStarClicked(star2)}
-        binding.star3CreateReview.setOnClickListener{onStarClicked(star3)}
-        binding.star4CreateReview.setOnClickListener{onStarClicked(star4)}
-        binding.star5CreateReview.setOnClickListener{onStarClicked(star5)}
+        binding.star1CreateReview.setOnClickListener { onStarClicked(star1) }
+        binding.star2CreateReview.setOnClickListener { onStarClicked(star2) }
+        binding.star3CreateReview.setOnClickListener { onStarClicked(star3) }
+        binding.star4CreateReview.setOnClickListener { onStarClicked(star4) }
+        binding.star5CreateReview.setOnClickListener { onStarClicked(star5) }
 
         viewModel.bookdescriptionError.observe(viewLifecycleOwner) {
             if (it.isNotEmpty())
@@ -129,7 +130,11 @@ class create_review : Fragment() {
             } else {
                 // Handle the case when chooseBook argument is missing
                 Log.e("create_review", "chooseBook argument is missing")
-                Toast.makeText(requireContext(), "Error: Choose Book argument is missing", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext(),
+                    "Error: Choose Book argument is missing",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
     }

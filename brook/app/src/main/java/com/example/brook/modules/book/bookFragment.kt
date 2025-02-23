@@ -1,4 +1,4 @@
-package com.example.Brook.modules.book
+package com.example.brook.modules.book
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle

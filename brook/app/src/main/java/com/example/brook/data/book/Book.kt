@@ -1,6 +1,5 @@
-package com.example.Brook.data.book
+package com.example.brook.data.book
 
-import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -19,6 +18,7 @@ data class Book(
 data class BooksResponse(
     val docs: List<Book>
 )
+
 interface BookApiService {
     @GET("search.json")
     fun searchBook(
@@ -27,7 +27,7 @@ interface BookApiService {
     ): Call<BooksResponse>
 
     @GET("work/{bookID}.json")
-    fun searchBookbYID(
-        @Path("bookId") bookID: String
+    fun searchBookByID(
+        @Path("bookID") bookID: String
     ): Call<BooksResponse>
 }

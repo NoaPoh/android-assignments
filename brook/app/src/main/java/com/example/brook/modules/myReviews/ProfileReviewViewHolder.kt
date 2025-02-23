@@ -1,4 +1,4 @@
-package com.example.Brook.modules.myReviews
+package com.example.brook.modules.myReviews
 
 import android.annotation.SuppressLint
 import android.util.Log
@@ -8,8 +8,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.Brook.R
-import com.example.Brook.data.review.Review
-import com.example.Brook.data.user.User
+import com.example.brook.data.review.Review
+import com.example.brook.data.user.User
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.squareup.picasso.Picasso
 

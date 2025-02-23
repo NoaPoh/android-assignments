@@ -1,10 +1,10 @@
-package com.example.Brook.modules.editBookReview
+package com.example.brook.modules.editBookReview
 
 import android.net.Uri
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.Brook.data.review.Review
-import com.example.Brook.data.review.ReviewModel
+import com.example.brook.data.review.Review
+import com.example.brook.data.review.ReviewModel
 
 class EditBookReviewViewModel : ViewModel() {
     var imageChanged = false
@@ -19,7 +19,7 @@ class EditBookReviewViewModel : ViewModel() {
         this.review = review
         this.bookdescription = review.bookDescription
         this.grade = review.grade
-        
+
         ReviewModel.instance.getReviewImage(review.id) {
             selectedImageURI.postValue(it)
         }

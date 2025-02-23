@@ -1,10 +1,10 @@
-package com.example.Brook.modules.search
+package com.example.brook.modules.search
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.Brook.R
-import com.example.Brook.data.book.Book
+import com.example.brook.data.book.Book
 
 class SearchAdapter(var books: MutableList<Book>?) :
     RecyclerView.Adapter<SearchHolder>() {

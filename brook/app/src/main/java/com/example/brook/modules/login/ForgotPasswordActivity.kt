@@ -1,4 +1,5 @@
-package com.example.Brook.modules.login
+package com.example.brook.modules.login
+
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -13,7 +14,7 @@ import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
 
-class ForgotPasswordActivity: AppCompatActivity() {
+class ForgotPasswordActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
 

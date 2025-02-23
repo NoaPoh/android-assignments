@@ -1,10 +1,10 @@
-package com.example.Brook.data.review
+package com.example.brook.data.review
 
 import android.content.Context
 import android.util.Log
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.Brook.BrookApplication
+import com.example.brook.BrookApplication
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FieldValue
 import java.io.Serializable
@@ -56,7 +56,7 @@ data class Review(
             val bookName = json[BOOK_NAME_KEY] as? String ?: ""
             val isDeleted = json[IS_DELETED_KEY] as? Boolean ?: false
             val userId = json[USER_ID_KEY] as? String ?: ""
-            val review = Review(id, bookName , bookDescription, grade, userId, isDeleted)
+            val review = Review(id, bookName, bookDescription, grade, userId, isDeleted)
 
             val timestamp: Timestamp? = json[LAST_UPDATED_KEY] as? Timestamp
             timestamp?.let {

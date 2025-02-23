@@ -1,4 +1,4 @@
-package com.example.Brook.modules.search
+package com.example.brook.modules.search
 
 import android.view.View
 import android.widget.ImageView
@@ -6,7 +6,7 @@ import android.widget.TextView
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.Brook.R
-import com.example.Brook.data.book.Book
+import com.example.brook.data.book.Book
 import com.squareup.picasso.Picasso
 
 class SearchHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -26,7 +26,7 @@ class SearchHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             val action = SearchFragmentDirections.actionSearchFragmentToBookFragment(book.key)
             Navigation.findNavController(itemView).navigate(action)
         }
-        val imageUrl : String = "https://covers.openlibrary.org/b/id/${book.cover_i}-L.jpg"
+        val imageUrl: String = "https://covers.openlibrary.org/b/id/${book.cover_i}-L.jpg"
 
         Picasso.get()
             .load(imageUrl)

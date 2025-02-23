@@ -4,8 +4,8 @@ import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.Brook.data.review.Review
-import com.example.Brook.data.review.ReviewModel
+import com.example.brook.data.review.Review
+import com.example.brook.data.review.ReviewModel
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import java.util.UUID

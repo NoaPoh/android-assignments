@@ -7,7 +7,7 @@
     android:paddingLeft="20dp"
     android:paddingRight="20dp"
     android:orientation="vertical"
-    tools:context=".modules.search.SearchFragment">
+    tools:context="com.example.brook.modules.search.SearchFragment">
 
     <SearchView
         android:id="@+id/searchView"

@@ -1,12 +1,12 @@
-package com.example.Brook.modules.feed
+package com.example.brook.modules.feed
 
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.Brook.R
-import com.example.Brook.data.review.Review
-import com.example.Brook.data.user.User
+import com.example.brook.data.review.Review
+import com.example.brook.data.user.User
 import com.squareup.picasso.Picasso
 
 class FeedReviewViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

@@ -1,4 +1,4 @@
-package com.example.Brook.data.user
+package com.example.brook.data.user
 
 import android.net.Uri
 import android.util.Log

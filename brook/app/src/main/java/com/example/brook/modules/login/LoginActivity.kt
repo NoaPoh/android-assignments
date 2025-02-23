@@ -1,4 +1,4 @@
-package com.example.Brook.modules.login
+package com.example.brook.modules.login
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -7,9 +7,9 @@ import android.util.Log
 import android.util.Patterns
 import android.widget.Button
 import android.widget.Toast
-import com.example.Brook.MainActivity
+import com.example.brook.MainActivity
 import com.example.Brook.R
-import com.example.Brook.modules.signup.SignupActivity
+import com.example.brook.modules.signup.SignupActivity
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.Firebase
@@ -29,34 +29,34 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var signinButton: Button
     private lateinit var forgotPasswordButton: Button
 
-    
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.i("creation","creating sign in screen yehonatan")
+        Log.i("creation", "creating sign in screen yehonatan")
         setContentView(R.layout.login_screen)
         // Set ui widgets
         setUI()
     }
 
 
-    fun setUI(){
+    fun setUI() {
 
         signinButton = findViewById(R.id.LoginButton)
         forgotPasswordButton = findViewById(R.id.ForgotPasswordPageButton)
         signUpButton = findViewById(R.id.toSignupPageButton)
 
-        signinButton?.setOnClickListener{
-            Log.i("buttonClick","signin button in signin screen clicked")
+        signinButton?.setOnClickListener {
+            Log.i("buttonClick", "signin button in signin screen clicked")
             checkLoginUser()
         }
 
-        signUpButton?.setOnClickListener{
-            Log.i("buttonClick","signup button in signin screen clicked")
+        signUpButton?.setOnClickListener {
+            Log.i("buttonClick", "signup button in signin screen clicked")
             val intent = Intent(this@LoginActivity, SignupActivity::class.java)
             startActivity(intent)
         }
-        forgotPasswordButton?.setOnClickListener{
-            Log.i("buttonClick","Forgot password button in signin screen clicked")
+        forgotPasswordButton?.setOnClickListener {
+            Log.i("buttonClick", "Forgot password button in signin screen clicked")
             val intent = Intent(this@LoginActivity, ForgotPasswordActivity::class.java)
             startActivity(intent)
         }
@@ -74,9 +74,9 @@ class LoginActivity : AppCompatActivity() {
         passwordInputLayout = findViewById(R.id.layoutLoginTextPassword)
         val passwordValue: String = passwordInputEditText?.text.toString().trim()
 
-        val checkUserValidation = loginUserValidation(emailValue,passwordValue)
+        val checkUserValidation = loginUserValidation(emailValue, passwordValue)
 
-        if(checkUserValidation) {
+        if (checkUserValidation) {
             Log.i("buttonClick", "signIn button in signin screen clicked")
             Log.i("signinSubmit", "email input is:" + emailValue)
             Log.i("signinSubmit", "password Input is:" + passwordValue)
@@ -98,8 +98,6 @@ class LoginActivity : AppCompatActivity() {
         }
 
 
-
-
     }
 
     private fun loggedInHandler() {
@@ -114,9 +112,9 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun loginUserValidation(
-    email: String,
-    password: String
-    ):Boolean {
+        email: String,
+        password: String
+    ): Boolean {
 
         // Basic checks
         if (email.isEmpty()) {

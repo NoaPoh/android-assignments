@@ -1,4 +1,4 @@
-package com.example.Brook.data.review
+package com.example.brook.data.review
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
@@ -6,6 +6,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.example.brook.data.review.Review
 
 @Dao
 interface ReviewDao {

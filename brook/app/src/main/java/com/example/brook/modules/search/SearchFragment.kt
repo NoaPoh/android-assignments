@@ -1,4 +1,4 @@
-package com.example.Brook.modules.search
+package com.example.brook.modules.search
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle

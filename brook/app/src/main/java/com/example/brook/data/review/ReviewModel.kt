@@ -1,10 +1,9 @@
-package com.example.Brook.data.review
+package com.example.brook.data.review
 
 import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.Brook.data.AppLocalDatabase
-import com.example.Brook.data.user.User
+import com.example.brook.data.AppLocalDatabase
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import java.util.concurrent.Executors

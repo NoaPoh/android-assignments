@@ -1,12 +1,9 @@
-package com.example.Brook.data.user
+package com.example.brook.data.user
 
 import android.net.Uri
 import android.util.Log
-import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.LiveData
-import com.example.Brook.data.AppLocalDatabase
-import com.example.Brook.data.user.User
+import com.example.brook.data.AppLocalDatabase
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import java.util.concurrent.Executors
@@ -81,7 +78,7 @@ class UserModel private constructor() {
                     callback()
                 }
             }
-        }  catch (e: Exception) {
+        } catch (e: Exception) {
             Log.d("userModel", "Error: $e")
         }
 

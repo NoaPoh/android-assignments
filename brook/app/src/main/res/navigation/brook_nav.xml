@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.example.Brook.modules.search.SearchFragment"
+        android:name="com.example.brook.modules.search.SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/profileReviews"
-        android:name="com.example.Brook.modules.myReviews.ProfileReviews"
+        android:name="com.example.brook.modules.myReviews.ProfileReviews"
         android:label="fragment_profile_reviews"
         tools:layout="@layout/fragment_books_feed" >
         <action
@@ -25,12 +25,12 @@
     </fragment>
     <fragment
         android:id="@+id/feed"
-        android:name="com.example.Brook.modules.feed.Feed"
+        android:name="com.example.brook.modules.feed.Feed"
         android:label="fragment_books_feed"
         tools:layout="@layout/fragment_books_feed" />
     <fragment
         android:id="@+id/bookFragment"
-        android:name="com.example.Brook.modules.book.bookFragment"
+        android:name="com.example.brook.modules.book.bookFragment"
         android:label="bookFragment">
         <action
             android:id="@+id/action_bookFragment_to_create_review"
@@ -41,7 +41,7 @@
     </fragment>
     <fragment
         android:id="@+id/create_review"
-        android:name="com.example.Brook.modules.createReview.create_review"
+        android:name="com.example.brook.modules.createReview.CreateReview"
         android:label="fragment_create_review"
         tools:layout="@layout/fragment_create_review">
         <action
@@ -53,7 +53,7 @@
     </fragment>
     <fragment
         android:id="@+id/editBookReview"
-        android:name="com.example.Brook.modules.editBookReview.editBookReview"
+        android:name="com.example.brook.modules.editBookReview.editBookReview"
         android:label="fragment_edit_book_review"
         tools:layout="@layout/fragment_edit_book_review" >
         <action
@@ -61,11 +61,11 @@
             app:destination="@id/profile" />
         <argument
             android:name="selectedReview"
-            app:argType="com.example.Brook.data.review.Review" />
+            app:argType="com.example.brook.data.review.Review" />
     </fragment>
     <fragment
         android:id="@+id/profile"
-        android:name="com.example.Brook.modules.profile.Profile"
+        android:name="com.example.brook.modules.profile.Profile"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" >
         <action
@@ -77,7 +77,7 @@
     </fragment>
     <fragment
         android:id="@+id/edit_profile"
-        android:name="com.example.Brook.modules.EditProfile.EditProfile"
+        android:name="com.example.brook.modules.editProfile.EditProfile"
         android:label="fragment_edit_profile"
         tools:layout="@layout/fragment_edit_profile" >
         <action

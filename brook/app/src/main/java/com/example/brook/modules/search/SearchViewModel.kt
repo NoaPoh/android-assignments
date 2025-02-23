@@ -1,9 +1,9 @@
-package com.example.Brook.modules.search
+package com.example.brook.modules.search
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.Brook.data.book.Book
-import com.example.Brook.data.book.BookService
+import com.example.brook.data.book.Book
+import com.example.brook.data.book.BookService
 
 class SearchViewModel : ViewModel() {
     var books: MutableLiveData<MutableList<Book>> = MutableLiveData()
@@ -13,6 +13,7 @@ class SearchViewModel : ViewModel() {
             books.postValue(it)
         }
     }
+
     fun clearBooks() {
         books.postValue(mutableListOf())
     }
