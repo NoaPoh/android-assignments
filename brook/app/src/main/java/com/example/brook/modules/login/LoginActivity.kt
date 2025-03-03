@@ -83,7 +83,8 @@ class LoginActivity : AppCompatActivity() {
 
             auth.signInWithEmailAndPassword(emailValue, passwordValue).addOnSuccessListener {
                 loggedInHandler()
-            }.addOnFailureListener {
+            }.addOnFailureListener { exception ->
+                Log.e("LoginError", "Error logging in", exception)
                 Toast.makeText(
                     this@LoginActivity,
                     "Your Email or Password is incorrect!",
