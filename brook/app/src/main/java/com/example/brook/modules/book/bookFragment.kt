@@ -11,24 +11,26 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.example.Brook.R
 import com.squareup.picasso.Picasso
+import kotlin.getValue
 
-
-
-class bookFragment : Fragment() {
-    private lateinit var viewModel: BookViewModel
-    private val args by navArgs<bookFragmentArgs>()
+class BookFragment : Fragment() {
 
     private lateinit var root: View
+    private lateinit var viewModel: BookViewModel
+    private lateinit var progressBar: ProgressBar
+    private val args: BookFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        root =  inflater.inflate(R.layout.fragment_book, container, false)
+        root = inflater.inflate(R.layout.fragment_book, container, false)
         viewModel = ViewModelProvider(this).get(BookViewModel::class.java)
         viewModel.setBook(args.chooseBook)
 
@@ -38,11 +40,11 @@ class bookFragment : Fragment() {
 
         }
         root.findViewById<Button>(R.id.AddReviewButton).setOnClickListener {
-            viewModel.bookDetailsData?.let { book ->
-                val action = bookFragmentDirections.actionBookFragmentToCreateReview(
+            viewModel.bookDetailsData.let { book ->
+                val action = BookFragmentDirections.actionBookFragmentToCreateReview(
                     book.value?.get(0)?.title ?: "Book"
                 )
-                Navigation.findNavController( root.findViewById<Button>(R.id.AddReviewButton)).navigate(action)
+                Navigation.findNavController(root.findViewById<Button>(R.id.AddReviewButton)).navigate(action)
             }
         }
 
