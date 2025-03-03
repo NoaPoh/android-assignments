@@ -8,26 +8,45 @@ import retrofit2.Call
 import retrofit2.http.Path
 
 data class Book(
-    val key: String,
+    val id: String,
     val title: String,
-    var author_name: Array<String>,
-    val cover_i: Int?,
-) : Serializable {
+    val author: String,
+    val publishedDate: String?,
+    val description: String?,
+    val coverUrl: String?
+): Serializable {}
 
-}
-
-data class BooksResponse(
-    val docs: List<Book>
+data class BookResponse(
+    @SerializedName("items") val items: List<BookItem>?
 )
-interface BookApiService {
-    @GET("search.json")
-    fun searchBook(
-        @Query("q") strBook: String,
-        @Query("limit") limit: Int = 10
-    ): Call<BooksResponse>
 
-    @GET("work/{bookID}.json")
-    fun searchBookbYID(
-        @Path("bookId") bookID: String
-    ): Call<BooksResponse>
+data class BookItem(
+    @SerializedName("id") val id: String,
+    @SerializedName("volumeInfo") val volumeInfo: VolumeInfo
+)
+
+data class VolumeInfo(
+    @SerializedName("title") val title: String?,
+    @SerializedName("authors") val authors: List<String>?,
+    @SerializedName("publishedDate") val publishedDate: String?,
+    @SerializedName("description") val description: String?,
+    @SerializedName("imageLinks") val imageLinks: ImageLinks?
+)
+
+data class ImageLinks(
+    @SerializedName("thumbnail") val thumbnail: String?
+)
+
+
+interface GoogleBooksApi {
+    @GET("volumes")
+    fun searchBooks(
+        @Query("q") query: String,  // Can be "isbn:9780143127741" or a title
+        @Query("maxResults") maxResults: Int = 16,
+    ): Call<BookResponse>
+
+    @GET("volumes/{bookId}")
+    fun getBookById(
+        @Path("bookId") bookId: String,
+    ): Call<BookItem>
 }

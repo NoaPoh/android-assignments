@@ -23,10 +23,10 @@ class SearchHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             return
         }
         itemView.setOnClickListener {
-            val action = SearchFragmentDirections.actionSearchFragmentToBookFragment(book.key)
+            val action = SearchFragmentDirections.actionSearchFragmentToBookFragment(book.id)
             Navigation.findNavController(itemView).navigate(action)
         }
-        val imageUrl : String = "https://covers.openlibrary.org/b/id/${book.cover_i}-L.jpg"
+        val imageUrl : String = book.coverUrl ?: "https://upload.wikimedia.org/wikipedia/commons/5/55/Question_Mark.svg"
 
         Picasso.get()
             .load(imageUrl)
