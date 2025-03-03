@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/searchFragment"
+        android:title="@string/search"
+        android:enabled="true"
+        android:icon="@drawable/baseline_search_24" />
+
+    <item
+        android:id="@+id/feed"
+        android:title="@string/Home"
+        android:enabled="true"
+        android:icon="@drawable/baseline_home_24" />
+
+
+    <item
+        android:id="@+id/profile"
+        android:title="@string/profile"
+        android:enabled="true"
+        android:icon="@drawable/baseline_account_circle_24" />
+
+</menu>

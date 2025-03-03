@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "774311759771",
+    "project_id": "brook-10930",
+    "storage_bucket": "brook-10930.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:774311759771:android:8563406cb47a5c44dc5b3e",
+        "android_client_info": {
+          "package_name": "com.example.Brook"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzYIkBmA5PFiNyl0bYoNQbg6-X9MZlMEE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

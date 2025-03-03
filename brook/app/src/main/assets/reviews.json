@@ -1,0 +1,22 @@
+[
+  {
+    "id": "1",
+    "bookName": "Mojito",
+    "bookDescription": "A refreshing book",
+    "grade": 3,
+    "userId": "user1",
+    "isDeleted": false,
+    "reviewImage": "mojito.jpg",
+    "timestamp": 1648068300
+  },
+  {
+    "id": "2",
+    "bookName": "Margarita",
+    "bookDescription": "A classic tequila-based book.",
+    "grade": 4,
+    "userId": "user2",
+    "isDeleted": false,
+    "reviewImage": "margarita.jpg",
+    "timestamp": 1648068400
+  }
+]
