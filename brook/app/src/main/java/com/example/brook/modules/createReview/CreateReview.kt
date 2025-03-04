@@ -21,7 +21,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.Brook.R
 import com.example.Brook.databinding.FragmentCreateReviewBinding
-import com.example.Brook.modules.createReview.CreateReviewViewModel
 
 class CreateReview : Fragment() {
     private var _binding: FragmentCreateReviewBinding? = null
@@ -57,10 +56,10 @@ class CreateReview : Fragment() {
         return view
     }
 
-    fun setUI() {
+    private fun setUI() {
 
         binding.editTextReviewDescriptionCreateReview.addTextChangedListener {
-            viewModel.bookdescription = it.toString().trim()
+            viewModel.bookDescription = it.toString().trim()
         }
         star1.tag = 1
         star2.tag = 2
@@ -84,7 +83,7 @@ class CreateReview : Fragment() {
         binding.star4CreateReview.setOnClickListener { onStarClicked(star4) }
         binding.star5CreateReview.setOnClickListener { onStarClicked(star5) }
 
-        viewModel.bookdescriptionError.observe(viewLifecycleOwner) {
+        viewModel.bookDescriptionError.observe(viewLifecycleOwner) {
             if (it.isNotEmpty()) binding.layoutTextReviewDescriptionCreateReview.error = it
         }
 
@@ -115,10 +114,11 @@ class CreateReview : Fragment() {
     private fun defineSaveButtonClickListener() {
         binding.saveButton.setOnClickListener {
             // Check if chooseBook argument is available
-            val chooseBook = args.bookName
-            if (chooseBook != null) {
+            val choosedBook = args.bookName
+
+            if (choosedBook != null) {
                 binding.saveButton.isClickable = false
-                viewModel.createReview(chooseBook) {
+                viewModel.createReview(choosedBook) {
                     findNavController().navigate(R.id.action_create_review_to_main_feed)
                     binding.saveButton.isClickable = true
                 }
@@ -157,7 +157,7 @@ class CreateReview : Fragment() {
                             requireContext(), "Selected image is too large", Toast.LENGTH_SHORT
                         ).show()
                     } else {
-                        viewModel.ImageURI.postValue(imageUri)
+                        viewModel.imageURI.postValue(imageUri)
                         binding.bookPicButton.setImageURI(imageUri)
                     }
                 } catch (e: Exception) {

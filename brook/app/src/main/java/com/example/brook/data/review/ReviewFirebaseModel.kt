@@ -47,8 +47,8 @@ class ReviewFirebaseModel {
 
     fun getImage(imageId: String, callback: (Uri) -> Unit) {
         storage.reference.child("images/$REVIEWS_COLLECTION_PATH/$imageId").downloadUrl.addOnSuccessListener { uri ->
-                callback(uri)
-            }
+            callback(uri)
+        }
     }
 
     fun addReview(review: Review, callback: () -> Unit) {
