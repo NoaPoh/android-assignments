@@ -10,7 +10,7 @@ import com.example.brook.data.user.User
 import com.example.brook.data.user.UserDao
 
 
-@Database(entities = [Review::class, User::class], version = 7, exportSchema = true)
+@Database(entities = [Review::class, User::class], version = 7, exportSchema = false)
 abstract class AppLocalDbRepository : RoomDatabase() {
     abstract fun reviewDao(): ReviewDao
     abstract fun userDto(): UserDao

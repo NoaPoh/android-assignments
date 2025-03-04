@@ -11,8 +11,7 @@ import java.io.Serializable
 
 @Entity
 data class Review(
-    @PrimaryKey
-    val id: String,
+    @PrimaryKey val id: String,
     val bookName: String,
     val bookDescription: String,
     val grade: Int,
@@ -25,15 +24,16 @@ data class Review(
     companion object {
         var lastUpdated: Long
             get() {
-                return BrookApplication.Globals
-                    .appContext?.getSharedPreferences("TAG", Context.MODE_PRIVATE)
-                    ?.getLong(REVIEW_LAST_UPDATED, 0) ?: 0
+                return BrookApplication.Globals.appContext?.getSharedPreferences(
+                        "TAG",
+                        Context.MODE_PRIVATE
+                    )?.getLong(REVIEW_LAST_UPDATED, 0) ?: 0
             }
             set(value) {
-                BrookApplication.Globals
-                    ?.appContext
-                    ?.getSharedPreferences("TAG", Context.MODE_PRIVATE)?.edit()
-                    ?.putLong(REVIEW_LAST_UPDATED, value)?.apply()
+                BrookApplication.Globals?.appContext?.getSharedPreferences(
+                        "TAG",
+                        Context.MODE_PRIVATE
+                    )?.edit()?.putLong(REVIEW_LAST_UPDATED, value)?.apply()
             }
 
         const val ID_KEY = "id"

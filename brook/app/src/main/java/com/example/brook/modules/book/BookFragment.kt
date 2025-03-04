@@ -21,20 +21,19 @@ class BookFragment : Fragment() {
 
     private lateinit var root: View
     private lateinit var viewModel: BookViewModel
-    private lateinit var progressBar: ProgressBar
     private val args: BookFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         root = inflater.inflate(R.layout.fragment_book, container, false)
-        viewModel = ViewModelProvider(this).get(BookViewModel::class.java)
+        viewModel = ViewModelProvider(this)[BookViewModel::class.java]
         viewModel.setBook(args.chooseBook)
 
         viewModel.bookDetailsData.observe(viewLifecycleOwner) {
             Log.d("TAG", "books size ${it?.size}")
-            booksDetails(root)
+            setBookDetails(root)
 
         }
         root.findViewById<Button>(R.id.AddReviewButton).setOnClickListener {
@@ -49,7 +48,7 @@ class BookFragment : Fragment() {
         return root
     }
 
-    fun booksDetails(root: View) {
+    private fun setBookDetails(root: View) {
         val bookName: TextView = root.findViewById(R.id.bookTitle)
         val bookAuthor: TextView = root.findViewById(R.id.AuthorName)
         val bookImage: ImageView = root.findViewById(R.id.bookImage)

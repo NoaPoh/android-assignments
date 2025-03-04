@@ -28,8 +28,8 @@ class ReviewFirebaseModel {
 
     fun getAllReviews(since: Long, callback: (List<Review>) -> Unit) {
         db.collection(REVIEWS_COLLECTION_PATH)
-            .whereGreaterThanOrEqualTo(Review.LAST_UPDATED_KEY, Timestamp(since, 0))
-            .get().addOnCompleteListener {
+            .whereGreaterThanOrEqualTo(Review.LAST_UPDATED_KEY, Timestamp(since, 0)).get()
+            .addOnCompleteListener {
                 when (it.isSuccessful) {
                     true -> {
                         val reviews: MutableList<Review> = mutableListOf()
@@ -46,9 +46,7 @@ class ReviewFirebaseModel {
     }
 
     fun getImage(imageId: String, callback: (Uri) -> Unit) {
-        storage.reference.child("images/$REVIEWS_COLLECTION_PATH/$imageId")
-            .downloadUrl
-            .addOnSuccessListener { uri ->
+        storage.reference.child("images/$REVIEWS_COLLECTION_PATH/$imageId").downloadUrl.addOnSuccessListener { uri ->
                 callback(uri)
             }
     }
@@ -68,8 +66,8 @@ class ReviewFirebaseModel {
     }
 
     fun deleteReview(review: Review?, callback: () -> Unit) {
-        db.collection(REVIEWS_COLLECTION_PATH)
-            .document(review!!.id).update(review.deleteJson).addOnSuccessListener {
+        db.collection(REVIEWS_COLLECTION_PATH).document(review!!.id).update(review.deleteJson)
+            .addOnSuccessListener {
                 callback()
             }.addOnFailureListener {
                 Log.d("Error", "Can't delete this review document: " + it.message)
@@ -77,8 +75,7 @@ class ReviewFirebaseModel {
     }
 
     fun updateReview(review: Review?, callback: () -> Unit) {
-        db.collection(REVIEWS_COLLECTION_PATH)
-            .document(review!!.id).update(review.updateJson)
+        db.collection(REVIEWS_COLLECTION_PATH).document(review!!.id).update(review.updateJson)
             .addOnSuccessListener {
                 callback()
             }.addOnFailureListener {

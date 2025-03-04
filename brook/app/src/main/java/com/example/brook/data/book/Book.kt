@@ -14,15 +14,14 @@ data class Book(
     val publishedDate: String?,
     val description: String?,
     val coverUrl: String?
-): Serializable {}
+) : Serializable {}
 
 data class BookResponse(
     @SerializedName("items") val items: List<BookItem>?
 )
 
 data class BookItem(
-    @SerializedName("id") val id: String,
-    @SerializedName("volumeInfo") val volumeInfo: VolumeInfo
+    @SerializedName("id") val id: String, @SerializedName("volumeInfo") val volumeInfo: VolumeInfo
 )
 
 data class VolumeInfo(
