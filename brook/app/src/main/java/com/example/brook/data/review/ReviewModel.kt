@@ -1,10 +1,9 @@
-package com.example.Brook.data.review
+package com.example.brook.data.review
 
 import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.Brook.data.AppLocalDatabase
-import com.example.Brook.data.user.User
+import com.example.brook.data.AppLocalDatabase
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import java.util.concurrent.Executors
@@ -12,8 +11,7 @@ import java.util.concurrent.Executors
 class ReviewModel private constructor() {
 
     enum class LoadingState {
-        LOADING,
-        LOADED
+        LOADING, LOADED
     }
 
     private val database = AppLocalDatabase.db
@@ -58,8 +56,7 @@ class ReviewModel private constructor() {
                     }
 
                     review.timestamp?.let {
-                        if (time < it)
-                            time = review.timestamp ?: System.currentTimeMillis()
+                        if (time < it) time = review.timestamp ?: System.currentTimeMillis()
                     }
                     Review.lastUpdated = time
                 }
@@ -99,7 +96,7 @@ class ReviewModel private constructor() {
     }
 
     fun getReviewImage(imageId: String, callback: (Uri) -> Unit) {
-        firebaseModel.getImage(imageId, callback);
+        firebaseModel.getImage(imageId, callback)
     }
 
 }

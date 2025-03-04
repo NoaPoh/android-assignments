@@ -1,12 +1,12 @@
-package com.example.Brook.modules.feed
+package com.example.brook.modules.feed
 
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.Brook.R
-import com.example.Brook.data.review.Review
-import com.example.Brook.data.user.User
+import com.example.brook.data.review.Review
+import com.example.brook.data.user.User
 
 class FeedRecycleAdapter(var reviews: MutableList<Review>?, var users: MutableList<User>?) :
 

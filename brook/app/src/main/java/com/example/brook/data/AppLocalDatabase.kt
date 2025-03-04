@@ -1,19 +1,19 @@
-package com.example.Brook.data
+package com.example.brook.data
 
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.Brook.BrookApplication
-import com.example.Brook.data.review.Review
-import com.example.Brook.data.review.ReviewDao
-import com.example.Brook.data.user.User
-import com.example.Brook.data.user.UserDTO
+import com.example.brook.BrookApplication
+import com.example.brook.data.review.Review
+import com.example.brook.data.review.ReviewDao
+import com.example.brook.data.user.User
+import com.example.brook.data.user.UserDao
 
 
-@Database(entities = [Review::class, User::class], version = 7, exportSchema = true)
+@Database(entities = [Review::class, User::class], version = 7, exportSchema = false)
 abstract class AppLocalDbRepository : RoomDatabase() {
     abstract fun reviewDao(): ReviewDao
-    abstract fun userDto(): UserDTO
+    abstract fun userDto(): UserDao
 }
 
 object AppLocalDatabase {

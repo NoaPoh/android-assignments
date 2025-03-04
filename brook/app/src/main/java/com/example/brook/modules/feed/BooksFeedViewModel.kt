@@ -1,13 +1,13 @@
-package com.example.Brook.modules.feed
+package com.example.brook.modules.feed
 
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.Brook.data.review.Review
-import com.example.Brook.data.review.ReviewModel
-import com.example.Brook.data.user.User
-import com.example.Brook.data.user.UserModel
+import com.example.brook.data.review.Review
+import com.example.brook.data.review.ReviewModel
+import com.example.brook.data.user.User
+import com.example.brook.data.user.UserModel
 import org.json.JSONObject
 
 

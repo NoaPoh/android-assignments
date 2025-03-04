@@ -1,4 +1,4 @@
-package com.example.Brook.data.book
+package com.example.brook.data.book
 
 import java.net.URLEncoder
 import java.nio.charset.StandardCharsets
@@ -25,10 +25,9 @@ class BookService {
                 if (response.isSuccessful) {
                     val books = response.body()?.items?.mapNotNull { bookItem ->
                         bookItem.volumeInfo.title?.let {
-
                             Book(
                                 id = bookItem.id,
-                                title = bookItem.volumeInfo.title ?: "Unknown Title",
+                                title = bookItem.volumeInfo.title,
                                 author = bookItem.volumeInfo.authors?.get(0) ?: "Unknown Author",
                                 publishedDate = bookItem.volumeInfo.publishedDate,
                                 description = bookItem.volumeInfo.description,

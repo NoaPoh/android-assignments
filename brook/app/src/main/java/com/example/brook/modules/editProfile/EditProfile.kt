@@ -1,4 +1,4 @@
-package com.example.Brook.modules.EditProfile
+package com.example.brook.modules.editProfile
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -11,7 +11,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresExtension

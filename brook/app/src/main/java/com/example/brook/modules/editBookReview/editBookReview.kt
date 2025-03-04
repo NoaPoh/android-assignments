@@ -1,4 +1,4 @@
-package com.example.Brook.modules.editBookReview
+package com.example.brook.modules.editBookReview
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -31,11 +31,11 @@ class editBookReview : Fragment() {
     private val binding get() = _binding!!
     private lateinit var viewModel: EditBookReviewViewModel
     private val args by navArgs<editBookReviewArgs>()
-    private lateinit var star1 : ImageView
-    private lateinit var star2 : ImageView
-    private lateinit var star3 : ImageView
-    private lateinit var star4 : ImageView
-    private lateinit var star5 : ImageView
+    private lateinit var star1: ImageView
+    private lateinit var star2: ImageView
+    private lateinit var star3: ImageView
+    private lateinit var star4: ImageView
+    private lateinit var star5: ImageView
     private val imageSelectionLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             try {
@@ -44,9 +44,7 @@ class editBookReview : Fragment() {
                 val maxCanvasSize = 5 * 1024 * 1024 // 5MB
                 if (imageSize > maxCanvasSize) {
                     Toast.makeText(
-                        requireContext(),
-                        "Selected image is too large",
-                        Toast.LENGTH_SHORT
+                        requireContext(), "Selected image is too large", Toast.LENGTH_SHORT
                     ).show()
                 } else {
                     viewModel.selectedImageURI.postValue(imageUri)
@@ -63,10 +61,9 @@ class editBookReview : Fragment() {
 
     @RequiresExtension(extension = Build.VERSION_CODES.R, version = 2)
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-      _binding = FragmentEditBookReviewBinding.inflate(inflater,container,false)
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentEditBookReviewBinding.inflate(inflater, container, false)
         val view = binding.root
         star1 = binding.star1EditBookReview
         star2 = binding.star2EditBookReview
@@ -74,11 +71,11 @@ class editBookReview : Fragment() {
         star4 = binding.star4EditBookReview
         star5 = binding.star5EditBookReview
 
-       viewModel = ViewModelProvider(this).get(EditBookReviewViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(EditBookReviewViewModel::class.java)
 
-       initFields()
-       defineUpdateButtonClickListener()
-       definePickImageClickListener()
+        initFields()
+        defineUpdateButtonClickListener()
+        definePickImageClickListener()
 
         return view
     }
@@ -91,15 +88,15 @@ class editBookReview : Fragment() {
         }
     }
 
-   private fun defineUpdateButtonClickListener() {
-       binding.saveButton.setOnClickListener {
-           binding.saveButton.isClickable = false
+    private fun defineUpdateButtonClickListener() {
+        binding.saveButton.setOnClickListener {
+            binding.saveButton.isClickable = false
             viewModel.updateReview {
-               findNavController().navigate(R.id.action_edit_book_review_to_profile)
-               binding.saveButton.isClickable = true
-           }
-       }
-   }
+                findNavController().navigate(R.id.action_edit_book_review_to_profile)
+                binding.saveButton.isClickable = true
+            }
+        }
+    }
 
     private fun initFields() {
         val currentReview = args.selectedReview
@@ -115,9 +112,9 @@ class editBookReview : Fragment() {
         star4.tag = 4
         star5.tag = 5
 
-        when(currentReview.grade) {
+        when (currentReview.grade) {
             in 1..5 -> {
-                star1.setImageResource(if (viewModel.grade!! >= 1)R.drawable.baseline_filled_star_24 else R.drawable.baseline_empty_star_border_24)
+                star1.setImageResource(if (viewModel.grade!! >= 1) R.drawable.baseline_filled_star_24 else R.drawable.baseline_empty_star_border_24)
                 star2.setImageResource(if (viewModel.grade!! >= 2) R.drawable.baseline_filled_star_24 else R.drawable.baseline_empty_star_border_24)
                 star3.setImageResource(if (viewModel.grade!! >= 3) R.drawable.baseline_filled_star_24 else R.drawable.baseline_empty_star_border_24)
                 star4.setImageResource(if (viewModel.grade!! >= 4) R.drawable.baseline_filled_star_24 else R.drawable.baseline_empty_star_border_24)
@@ -125,11 +122,11 @@ class editBookReview : Fragment() {
             }
         }
 
-        binding.star1EditBookReview.setOnClickListener{onStarClicked(star1)}
-        binding.star2EditBookReview.setOnClickListener{onStarClicked(star2)}
-        binding.star3EditBookReview.setOnClickListener{onStarClicked(star3)}
-        binding.star4EditBookReview.setOnClickListener{onStarClicked(star4)}
-        binding.star5EditBookReview.setOnClickListener{onStarClicked(star5)}
+        binding.star1EditBookReview.setOnClickListener { onStarClicked(star1) }
+        binding.star2EditBookReview.setOnClickListener { onStarClicked(star2) }
+        binding.star3EditBookReview.setOnClickListener { onStarClicked(star3) }
+        binding.star4EditBookReview.setOnClickListener { onStarClicked(star4) }
+        binding.star5EditBookReview.setOnClickListener { onStarClicked(star5) }
 
 
         viewModel.selectedImageURI.observe(viewLifecycleOwner) { uri ->
@@ -137,12 +134,12 @@ class editBookReview : Fragment() {
         }
 
         viewModel.descriptionError.observe(viewLifecycleOwner) {
-            if (it.isNotEmpty())
-                binding.editTextBookDescription.error = it
+            if (it.isNotEmpty()) binding.editTextBookDescription.error = it
         }
 
     }
-    public fun onStarClicked(view: ImageView) {
+
+    private fun onStarClicked(view: ImageView) {
         Log.d("StarClick", "Star clicked") // Add this line
         val clickedStar = view
         val clickedStarPosition = clickedStar.tag.toString().toInt()

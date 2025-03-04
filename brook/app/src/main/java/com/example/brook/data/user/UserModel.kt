@@ -1,12 +1,9 @@
-package com.example.Brook.data.user
+package com.example.brook.data.user
 
 import android.net.Uri
 import android.util.Log
-import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.LiveData
-import com.example.Brook.data.AppLocalDatabase
-import com.example.Brook.data.user.User
+import com.example.brook.data.AppLocalDatabase
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import java.util.concurrent.Executors
@@ -47,8 +44,7 @@ class UserModel private constructor() {
                 }
 
                 user.lastModified?.let {
-                    if (time < it)
-                        time = user.lastModified ?: System.currentTimeMillis()
+                    if (time < it) time = user.lastModified ?: System.currentTimeMillis()
                 }
                 User.lastModified = time
             }
@@ -70,18 +66,18 @@ class UserModel private constructor() {
     }
 
     fun getUserImage(imageId: String, callback: (Uri) -> Unit) {
-        firebaseModel.getImage(imageId, callback);
+        firebaseModel.getImage(imageId, callback)
     }
 
-    fun addUser(user: User, ImageUri: Uri, callback: () -> Unit) {
+    fun addUser(user: User, imageUri: Uri, callback: () -> Unit) {
         try {
             firebaseModel.addUser(user) {
-                firebaseModel.addUserImage(user.id, ImageUri) {
+                firebaseModel.addUserImage(user.id, imageUri) {
                     refreshAllUsers()
                     callback()
                 }
             }
-        }  catch (e: Exception) {
+        } catch (e: Exception) {
             Log.d("userModel", "Error: $e")
         }
 

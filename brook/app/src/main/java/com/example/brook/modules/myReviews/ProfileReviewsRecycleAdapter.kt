@@ -1,4 +1,4 @@
-package com.example.Brook.modules.myReviews
+package com.example.brook.modules.myReviews
 
 import android.util.Log
 import android.view.LayoutInflater
@@ -7,13 +7,12 @@ import android.widget.Toast
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.Brook.R
-import com.example.Brook.data.review.Review
-import com.example.Brook.data.review.ReviewModel
-import com.example.Brook.data.user.User
-import com.example.Brook.databinding.FragmentProfileBinding
+import com.example.brook.data.review.Review
+import com.example.brook.data.review.ReviewModel
+import com.example.brook.data.user.User
 
 class ProfileReviewsRecycleAdapter(var reviews: MutableList<Review>?, var user: User?) :
-    RecyclerView.Adapter<ProfileReviewViewHolder>()  {
+    RecyclerView.Adapter<ProfileReviewViewHolder>() {
 
     override fun getItemCount(): Int {
         return reviews?.size ?: 0

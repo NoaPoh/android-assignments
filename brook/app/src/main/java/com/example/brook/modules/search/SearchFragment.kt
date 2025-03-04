@@ -1,4 +1,4 @@
-package com.example.Brook.modules.search
+package com.example.brook.modules.search
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -20,8 +20,7 @@ class SearchFragment : Fragment() {
     private lateinit var viewModel: SearchViewModel
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
         val view = binding.root
@@ -50,10 +49,9 @@ class SearchFragment : Fragment() {
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
-                if (viewModel.books.value?.isNotEmpty() == true)
-                    binding.SearchTextView.visibility = View.GONE
-                else
-                    binding.SearchTextView.visibility = View.VISIBLE
+                if (viewModel.books.value?.isNotEmpty() == true) binding.SearchTextView.visibility =
+                    View.GONE
+                else binding.SearchTextView.visibility = View.VISIBLE
 
                 return false
             }

@@ -1,10 +1,10 @@
-package com.example.Brook
+package com.example.brook
 
 
 import android.app.Application
 import android.content.Context
 
-class BrookApplication :Application() {
+class BrookApplication : Application() {
 
     object Globals {
         var appContext: Context? = null

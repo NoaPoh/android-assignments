@@ -1,4 +1,4 @@
-package com.example.Brook.modules.profile
+package com.example.brook.modules.profile
 
 import android.content.Intent
 import android.os.Bundle
@@ -13,7 +13,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.navigation.Navigation
 import com.example.Brook.R
-import com.example.Brook.modules.login.LoginActivity
+import com.example.brook.modules.login.LoginActivity
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.google.firebase.storage.storage
@@ -25,16 +25,14 @@ class Profile : Fragment() {
     private var auth = Firebase.auth
     private val storage = Firebase.storage
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View {
         root = inflater.inflate(R.layout.fragment_profile, container, false)
         root = setUI(root)
         return root
-
     }
 
-    private fun setUI(root: View) : View{
+    private fun setUI(root: View): View {
 
         root.findViewById<TextView>(R.id.UserNameTextView).text = "${auth.currentUser?.displayName}"
 
@@ -61,9 +59,7 @@ class Profile : Fragment() {
     private fun logOut() {
         auth.signOut()
         Toast.makeText(
-            requireContext(),
-            "Logged out",
-            Toast.LENGTH_SHORT
+            requireContext(), "Logged out", Toast.LENGTH_SHORT
         ).show()
 
         val intent = Intent(requireContext(), LoginActivity::class.java)
@@ -71,6 +67,4 @@ class Profile : Fragment() {
         startActivity(intent)
         activity?.finish()
     }
-
-
 }

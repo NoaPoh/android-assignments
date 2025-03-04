@@ -1,18 +1,17 @@
-package com.example.Brook.data.review
+package com.example.brook.data.review
 
 import android.content.Context
 import android.util.Log
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.Brook.BrookApplication
+import com.example.brook.BrookApplication
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FieldValue
 import java.io.Serializable
 
 @Entity
 data class Review(
-    @PrimaryKey
-    val id: String,
+    @PrimaryKey val id: String,
     val bookName: String,
     val bookDescription: String,
     val grade: Int,
@@ -25,15 +24,16 @@ data class Review(
     companion object {
         var lastUpdated: Long
             get() {
-                return BrookApplication.Globals
-                    .appContext?.getSharedPreferences("TAG", Context.MODE_PRIVATE)
-                    ?.getLong(REVIEW_LAST_UPDATED, 0) ?: 0
+                return BrookApplication.Globals.appContext?.getSharedPreferences(
+                        "TAG",
+                        Context.MODE_PRIVATE
+                    )?.getLong(REVIEW_LAST_UPDATED, 0) ?: 0
             }
             set(value) {
-                BrookApplication.Globals
-                    ?.appContext
-                    ?.getSharedPreferences("TAG", Context.MODE_PRIVATE)?.edit()
-                    ?.putLong(REVIEW_LAST_UPDATED, value)?.apply()
+                BrookApplication.Globals?.appContext?.getSharedPreferences(
+                        "TAG",
+                        Context.MODE_PRIVATE
+                    )?.edit()?.putLong(REVIEW_LAST_UPDATED, value)?.apply()
             }
 
         const val ID_KEY = "id"
@@ -56,7 +56,7 @@ data class Review(
             val bookName = json[BOOK_NAME_KEY] as? String ?: ""
             val isDeleted = json[IS_DELETED_KEY] as? Boolean ?: false
             val userId = json[USER_ID_KEY] as? String ?: ""
-            val review = Review(id, bookName , bookDescription, grade, userId, isDeleted)
+            val review = Review(id, bookName, bookDescription, grade, userId, isDeleted)
 
             val timestamp: Timestamp? = json[LAST_UPDATED_KEY] as? Timestamp
             timestamp?.let {

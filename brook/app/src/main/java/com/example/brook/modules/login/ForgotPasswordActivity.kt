@@ -1,4 +1,5 @@
-package com.example.Brook.modules.login
+package com.example.brook.modules.login
+
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -13,7 +14,7 @@ import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
 
-class ForgotPasswordActivity: AppCompatActivity() {
+class ForgotPasswordActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
 
@@ -32,12 +33,10 @@ class ForgotPasswordActivity: AppCompatActivity() {
     }
 
 
-    fun setUI() {
-
-
+    private fun setUI() {
         rememberPassword = findViewById(R.id.ForgotPasswordRememberButton)
         sendEmailButton = findViewById(R.id.ForgotPasswordEmailLinkButton)
-        rememberPassword?.setOnClickListener {
+        rememberPassword.setOnClickListener {
             Log.i("buttonClick", "rememberPassword button in forgot password screen clicked")
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
@@ -67,15 +66,12 @@ class ForgotPasswordActivity: AppCompatActivity() {
                         "Reset password link has been sent, Check your Email",
                         Toast.LENGTH_SHORT
                     ).show()
-                    val intent =
-                        Intent(this@ForgotPasswordActivity, LoginActivity::class.java)
+                    val intent = Intent(this@ForgotPasswordActivity, LoginActivity::class.java)
                     startActivity(intent)
                     finish()
                 }.addOnFailureListener {
                     Toast.makeText(
-                        this@ForgotPasswordActivity,
-                        "Error: " + it.message,
-                        Toast.LENGTH_SHORT
+                        this@ForgotPasswordActivity, "Error: " + it.message, Toast.LENGTH_SHORT
                     ).show()
                 }
             }

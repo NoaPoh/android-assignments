@@ -1,14 +1,13 @@
-package com.example.Brook.data.user
+package com.example.brook.data.user
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
-import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 
 @Dao
-interface UserDTO {
+interface UserDao {
     @Query("SELECT * FROM user where id in (select userId from review)")
     fun getAllUsers(): LiveData<MutableList<User>>
 

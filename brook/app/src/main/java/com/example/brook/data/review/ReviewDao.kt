@@ -1,4 +1,4 @@
-package com.example.Brook.data.review
+package com.example.brook.data.review
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
