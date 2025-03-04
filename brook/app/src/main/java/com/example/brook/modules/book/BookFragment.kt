@@ -24,8 +24,7 @@ class BookFragment : Fragment() {
     private val args: BookFragmentArgs by navArgs()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         root = inflater.inflate(R.layout.fragment_book, container, false)
         viewModel = ViewModelProvider(this)[BookViewModel::class.java]
@@ -36,14 +35,8 @@ class BookFragment : Fragment() {
             setBookDetails(root)
 
         }
-        root.findViewById<Button>(R.id.AddReviewButton).setOnClickListener {
-            viewModel.bookDetailsData.let { book ->
-                val action = BookFragmentDirections.actionBookFragmentToCreateReview(
-                    book.value?.get(0)?.title ?: "Book"
-                )
-                Navigation.findNavController(root.findViewById<Button>(R.id.AddReviewButton)).navigate(action)
-            }
-        }
+        root.findViewById<Button>(R.id.AddReviewButton)
+            .setOnClickListener(::onCreateReviewButtonClick)
 
         return root
     }
@@ -52,15 +45,22 @@ class BookFragment : Fragment() {
         val bookName: TextView = root.findViewById(R.id.bookTitle)
         val bookAuthor: TextView = root.findViewById(R.id.AuthorName)
         val bookImage: ImageView = root.findViewById(R.id.bookImage)
-        val imageUrl: String = bookImage.toString()
-        // todo fix imageurl
+
         viewModel.bookDetailsData.let { book ->
             bookName.text = book.value?.get(0)?.title
-            bookAuthor.text = book.value?.get(0)?.author!![0].toString()
-            Picasso.get()
-                .load(imageUrl)
-                .into(bookImage)
+            bookAuthor.text = "By " + book.value?.get(0)?.author
+            Picasso.get().load(book.value?.get(0)?.coverUrl).into(bookImage)
             bookAuthor.movementMethod = ScrollingMovementMethod()
+        }
+    }
+
+    private fun onCreateReviewButtonClick(view: View): Unit {
+        viewModel.bookDetailsData.let { book ->
+            val action = BookFragmentDirections.actionBookFragmentToCreateReview(
+                book.value?.get(0)?.title ?: "Book"
+            )
+            Navigation.findNavController(root.findViewById<Button>(R.id.AddReviewButton))
+                .navigate(action)
         }
     }
 

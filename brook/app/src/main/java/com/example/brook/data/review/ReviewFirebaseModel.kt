@@ -47,14 +47,16 @@ class ReviewFirebaseModel {
 
     fun getImage(imageId: String, callback: (Uri) -> Unit) {
         storage.reference.child("images/$REVIEWS_COLLECTION_PATH/$imageId").downloadUrl.addOnSuccessListener { uri ->
-                callback(uri)
-            }
+            callback(uri)
+        }
     }
 
     fun addReview(review: Review, callback: () -> Unit) {
         db.collection(REVIEWS_COLLECTION_PATH).document(review.id).set(review.json)
             .addOnSuccessListener {
                 callback()
+            }.addOnFailureListener { exception ->
+                Log.e("TAG", "addReview: failed", exception)
             }
     }
 
@@ -62,6 +64,8 @@ class ReviewFirebaseModel {
         val imageRef = storage.reference.child("images/$REVIEWS_COLLECTION_PATH/${reviewId}")
         imageRef.putFile(selectedImageUri).addOnSuccessListener {
             callback()
+        }.addOnFailureListener { exception ->
+            Log.e("TAG", "addImageReview: failed", exception)
         }
     }
 
