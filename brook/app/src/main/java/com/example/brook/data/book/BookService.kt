@@ -1,4 +1,4 @@
-package com.example.brook.data.book
+package com.example.Brook.data.book
 
 import java.net.URLEncoder
 import java.nio.charset.StandardCharsets
@@ -13,48 +13,75 @@ class BookService {
         val instance: BookService = BookService()
     }
 
-    private val apiService: BookApiService =
-        RetrofitClient.retrofit.create(BookApiService::class.java)
+    private val apiService: GoogleBooksApi =
+        RetrofitClient.retrofit.create(GoogleBooksApi::class.java)
 
     fun searchBook(strBook: String, callback: (MutableList<Book>) -> Unit) {
         val encodedBookName = URLEncoder.encode(strBook, StandardCharsets.UTF_8.toString())
-        val call: Call<BooksResponse> = apiService.searchBook(encodedBookName)
-        call.enqueue(object : Callback<BooksResponse> {
-            override fun onResponse(call: Call<BooksResponse>, response: Response<BooksResponse>) {
+        val call: Call<BookResponse> = apiService.searchBooks(encodedBookName)
+
+        call.enqueue(object : Callback<BookResponse> {
+            override fun onResponse(call: Call<BookResponse>, response: Response<BookResponse>) {
                 if (response.isSuccessful) {
-                    val books: List<Book>? = response.body()?.docs
-                    callback(books?.toMutableList() ?: mutableListOf())
+                    val books = response.body()?.items?.mapNotNull { bookItem ->
+                        bookItem.volumeInfo.title?.let {
+
+                            Book(
+                                id = bookItem.id,
+                                title = bookItem.volumeInfo.title ?: "Unknown Title",
+                                author = bookItem.volumeInfo.authors?.get(0) ?: "Unknown Author",
+                                publishedDate = bookItem.volumeInfo.publishedDate,
+                                description = bookItem.volumeInfo.description,
+                                coverUrl = bookItem.volumeInfo.imageLinks?.thumbnail
+                            )
+                        }
+                    } ?: mutableListOf()
+
+                    callback(books.toMutableList())
                 } else {
                     throw Exception("Failed to fetch books")
                 }
             }
 
-            override fun onFailure(call: Call<BooksResponse>, t: Throwable) {
+            override fun onFailure(call: Call<BookResponse>, t: Throwable) {
                 throw Exception("Failed to fetch books")
             }
         })
     }
 
-    fun searchBookByID(BookID: String, callback: (MutableList<Book>) -> Unit) {
-        val call: Call<BooksResponse> = apiService.searchBookByID(BookID)
-        call.enqueue(object : Callback<BooksResponse> {
-            override fun onResponse(call: Call<BooksResponse>, response: Response<BooksResponse>) {
+    fun searchBookByID(bookID: String, callback: (MutableList<Book>) -> Unit) {
+        val call: Call<BookItem> = apiService.getBookById(bookID)
+
+        call.enqueue(object : Callback<BookItem> {
+            override fun onResponse(call: Call<BookItem>, response: Response<BookItem>) {
                 if (response.isSuccessful) {
-                    val books: List<Book>? = response.body()?.docs
-                    callback(books?.toMutableList() ?: mutableListOf())
+                    val bookData = response.body()
+                    bookData?.let {
+                        it.volumeInfo.title?.let { title ->
+                        val book = Book(
+                            id = it.id,
+                            title = it.volumeInfo.title,
+                            author = it.volumeInfo.authors?.get(0) ?: "Unknown Author",
+                            publishedDate = it.volumeInfo.publishedDate,
+                            description = it.volumeInfo.description,
+                            coverUrl = it.volumeInfo.imageLinks?.thumbnail
+                        )
+                        callback(mutableListOf(book))
+                        } ?: callback(mutableListOf())
+                    } ?: callback(mutableListOf())
                 } else {
-                    throw Exception("Failed to fetch books")
+                    throw Exception("Failed to fetch book")
                 }
             }
 
-            override fun onFailure(call: Call<BooksResponse>, t: Throwable) {
-                throw Exception("Failed to fetch books")
+            override fun onFailure(call: Call<BookItem>, t: Throwable) {
+                throw Exception("Failed to fetch book")
             }
         })
     }
 
     object RetrofitClient {
-        private const val BASE_URL = "https://openlibrary.org/"
+        private const val BASE_URL = "https://www.googleapis.com/books/v1/"
 
         val retrofit: Retrofit by lazy {
             Retrofit.Builder()

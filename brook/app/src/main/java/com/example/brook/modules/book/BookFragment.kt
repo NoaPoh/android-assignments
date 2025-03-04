@@ -15,17 +15,19 @@ import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.example.Brook.R
 import com.squareup.picasso.Picasso
-
+import kotlin.getValue
 
 class BookFragment : Fragment() {
-    private lateinit var viewModel: BookViewModel
-    private val args by navArgs<BookFragmentArgs>()
 
     private lateinit var root: View
+    private lateinit var viewModel: BookViewModel
+    private lateinit var progressBar: ProgressBar
+    private val args: BookFragmentArgs by navArgs()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View {
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         root = inflater.inflate(R.layout.fragment_book, container, false)
         viewModel = ViewModelProvider(this).get(BookViewModel::class.java)
         viewModel.setBook(args.chooseBook)
@@ -40,24 +42,25 @@ class BookFragment : Fragment() {
                 val action = BookFragmentDirections.actionBookFragmentToCreateReview(
                     book.value?.get(0)?.title ?: "Book"
                 )
-                Navigation.findNavController(root.findViewById<Button>(R.id.AddReviewButton))
-                    .navigate(action)
+                Navigation.findNavController(root.findViewById<Button>(R.id.AddReviewButton)).navigate(action)
             }
         }
 
         return root
     }
 
-    private fun booksDetails(root: View) {
+    fun booksDetails(root: View) {
         val bookName: TextView = root.findViewById(R.id.bookTitle)
         val bookAuthor: TextView = root.findViewById(R.id.AuthorName)
         val bookImage: ImageView = root.findViewById(R.id.bookImage)
-        val imageUrl = "https://covers.openlibrary.org/b/id/${bookImage}-L.jpg"
-
+        val imageUrl: String = bookImage.toString()
+        // todo fix imageurl
         viewModel.bookDetailsData.let { book ->
             bookName.text = book.value?.get(0)?.title
-            bookAuthor.text = book.value?.get(0)?.author_name!![0]
-            Picasso.get().load(imageUrl).into(bookImage)
+            bookAuthor.text = book.value?.get(0)?.author!![0].toString()
+            Picasso.get()
+                .load(imageUrl)
+                .into(bookImage)
             bookAuthor.movementMethod = ScrollingMovementMethod()
         }
     }
