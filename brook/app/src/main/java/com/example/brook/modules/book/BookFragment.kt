@@ -52,13 +52,12 @@ class BookFragment : Fragment() {
         val bookName: TextView = root.findViewById(R.id.bookTitle)
         val bookAuthor: TextView = root.findViewById(R.id.AuthorName)
         val bookImage: ImageView = root.findViewById(R.id.bookImage)
-        val imageUrl: String = bookImage.toString()
-        // todo fix imageurl
+
         viewModel.bookDetailsData.let { book ->
             bookName.text = book.value?.get(0)?.title
-            bookAuthor.text = book.value?.get(0)?.author!![0].toString()
+            bookAuthor.text = book.value?.get(0)?.author
             Picasso.get()
-                .load(imageUrl)
+                .load(book.value?.get(0)?.coverUrl)
                 .into(bookImage)
             bookAuthor.movementMethod = ScrollingMovementMethod()
         }
