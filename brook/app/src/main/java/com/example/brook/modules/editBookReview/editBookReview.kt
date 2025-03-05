@@ -162,7 +162,8 @@ class editBookReview : Fragment() {
     @RequiresExtension(extension = Build.VERSION_CODES.R, version = 2)
     private fun defineImageSelectionCallBack() {
         binding.bookPicButton.setOnClickListener {
-            val intent = Intent(MediaStore.ACTION_PICK_IMAGES)
+            val intent = Intent(Intent.ACTION_GET_CONTENT)
+            intent.type = "image/*"
             imageSelectionLauncher.launch(intent)
         }
     }
