@@ -6,10 +6,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.Brook.R
 import com.example.Brook.databinding.FragmentBooksFeedBinding
 import com.example.brook.data.review.ReviewModel
 
@@ -20,6 +23,7 @@ class Feed : Fragment() {
     private var _binding: FragmentBooksFeedBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: BooksFeedViewModel
+    private lateinit var progressBar: ProgressBar
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreateView(
@@ -37,6 +41,7 @@ class Feed : Fragment() {
         adapter = FeedRecycleAdapter(viewModel.reviews.value, viewModel.users.value)
 
         reviewsRecyclerView?.adapter = adapter
+        progressBar = view.findViewById(R.id.progressBar)
 
         viewModel.reviews.observe(viewLifecycleOwner) {
             adapter?.reviews = it
@@ -52,9 +57,14 @@ class Feed : Fragment() {
             viewModel.reloadData()
         }
 
-        viewModel.reviewsListLoadingState.observe(viewLifecycleOwner) { state ->
+        viewModel.reviewsListLoadingState.observe(viewLifecycleOwner, Observer { state ->
             binding.pullToRefresh.isRefreshing = state == ReviewModel.LoadingState.LOADING
-        }
+
+            when (state) {
+                ReviewModel.LoadingState.LOADING -> progressBar.visibility = View.VISIBLE
+                ReviewModel.LoadingState.LOADED -> progressBar.visibility = View.GONE
+            }
+        })
 
         return view
     }

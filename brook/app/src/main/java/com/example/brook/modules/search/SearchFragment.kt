@@ -7,10 +7,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import android.widget.SearchView
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.Brook.R
 import com.example.Brook.databinding.FragmentSearchBinding
+import com.example.brook.data.review.ReviewModel
 
 class SearchFragment : Fragment() {
     private var searchRecyclerView: RecyclerView? = null
@@ -18,6 +22,7 @@ class SearchFragment : Fragment() {
     private var adapter: SearchAdapter? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: SearchViewModel
+    private lateinit var progressBar: ProgressBar
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -25,6 +30,7 @@ class SearchFragment : Fragment() {
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
         val view = binding.root
         viewModel = ViewModelProvider(this)[SearchViewModel::class.java]
+        progressBar = view.findViewById(R.id.progressBar)
 
         searchRecyclerView = binding.searchResultsLayout
         searchRecyclerView?.setHasFixedSize(true)
@@ -38,6 +44,13 @@ class SearchFragment : Fragment() {
             adapter?.books = it
             adapter?.notifyDataSetChanged()
         }
+
+        viewModel.loadingState.observe(viewLifecycleOwner, Observer { state ->
+            when (state) {
+                ReviewModel.LoadingState.LOADING -> progressBar.visibility = View.VISIBLE
+                ReviewModel.LoadingState.LOADED -> progressBar.visibility = View.GONE
+            }
+        })
 
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
