@@ -9,17 +9,38 @@
     android:paddingLeft="20dp"
     android:paddingRight="20dp">
 
-    <ImageView
-        android:id="@+id/ProfileImageView"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ProfileContainer"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="148dp"
-        android:src="@drawable/profilelogo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/UserNameTextView"
+        android:layout_marginTop="148dp">
+
+        <ImageView
+            android:id="@+id/ProfileImageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/profilelogo"
+            android:scaleType="centerCrop"
+            android:visibility="gone"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <ProgressBar
+            android:id="@+id/profileImageProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:id="@+id/UserNameTextView"
@@ -33,9 +54,9 @@
         android:textColorHint="@color/theme_color"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ProfileContainer"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ProfileImageView" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/MyReviewsButton"

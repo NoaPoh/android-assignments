@@ -1,14 +1,14 @@
 package com.example.brook.modules.login
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
 import android.widget.Button
 import android.widget.Toast
-import com.example.brook.MainActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.example.Brook.R
+import com.example.brook.MainActivity
 import com.example.brook.modules.signup.SignupActivity
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
@@ -29,15 +29,23 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var signinButton: Button
     private lateinit var forgotPasswordButton: Button
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.i("creation", "creating sign in screen yehonatan")
         setContentView(R.layout.login_screen)
-        // Set ui widgets
-        setUI()
+
+        checkUserAndNavigate() // ✅ Check if user is logged in
     }
 
+    private fun checkUserAndNavigate() {
+        val currentUser = auth.currentUser
+        if (currentUser?.uid != null) {
+            Log.d("Auth", "User is already logged in. Navigating to Feed.")
+            loggedInHandler()
+        } else {
+            setUI()
+        }
+    }
 
     fun setUI() {
 
