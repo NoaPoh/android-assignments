@@ -13,7 +13,8 @@
         android:id="@+id/searchView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="96dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginBottom="30dp"
         android:background="@drawable/search_view"
         android:backgroundTint="@color/theme_color"
         android:focusable="true"
@@ -49,6 +50,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/SearchTextViewLayout" />
-
 
 </LinearLayout>
