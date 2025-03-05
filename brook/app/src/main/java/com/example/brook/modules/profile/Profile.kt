@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.navigation.Navigation
@@ -24,6 +25,7 @@ class Profile : Fragment() {
     private lateinit var root: View
     private var auth = Firebase.auth
     private val storage = Firebase.storage
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -33,13 +35,29 @@ class Profile : Fragment() {
     }
 
     private fun setUI(root: View): View {
+        val progressBar = root.findViewById<ProgressBar>(R.id.profileImageProgressBar)
+        val profileImageView = root.findViewById<ImageView>(R.id.ProfileImageView)
 
-        root.findViewById<TextView>(R.id.UserNameTextView).text = "${auth.currentUser?.displayName}"
+        progressBar.visibility = View.VISIBLE
+        profileImageView.visibility = View.INVISIBLE
 
         val imageRef = storage.reference.child("images/users/${auth.currentUser?.uid}")
         imageRef.downloadUrl.addOnSuccessListener { uri ->
-            Picasso.get().load(uri).into(root.findViewById<ImageView>(R.id.ProfileImageView))
+            Picasso.get()
+                .load(uri)
+                .into(profileImageView, object : com.squareup.picasso.Callback {
+                    override fun onSuccess() {
+                        progressBar.visibility = View.GONE
+                        profileImageView.visibility = View.VISIBLE
+                    }
+
+                    override fun onError(e: Exception?) {
+                        progressBar.visibility = View.GONE
+                        Log.d("FirebaseStorage", "Error loading image with Picasso: $e")
+                    }
+                })
         }.addOnFailureListener { exception ->
+            progressBar.visibility = View.GONE
             Log.d("FirebaseStorage", "Error getting download image URI: $exception")
         }
 
