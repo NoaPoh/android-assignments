@@ -11,7 +11,7 @@
         android:id="@+id/bookPicButton"
         android:layout_width="127dp"
         android:layout_height="110dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="140dp"
         android:backgroundTint="#000000"
         android:contentDescription="pick profile picture"
         android:scaleType="centerCrop"
