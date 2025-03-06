@@ -53,11 +53,23 @@
     </fragment>
     <fragment
         android:id="@+id/editBookReview"
-        android:name="com.example.brook.modules.editBookReview.editBookReview"
+        android:name="com.example.brook.modules.editBookReview.EditBookReview"
         android:label="fragment_edit_book_review"
         tools:layout="@layout/fragment_edit_book_review" >
         <action
             android:id="@+id/action_edit_book_review_to_profile"
+            app:destination="@id/profile" />
+        <argument
+            android:name="selectedReview"
+            app:argType="com.example.brook.data.review.Review" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewBookReview"
+        android:name="com.example.brook.modules.viewBookReview.ViewBookReview"
+        android:label="fragment_view_book_review"
+        tools:layout="@layout/fragment_view_book_review" >
+        <action
+            android:id="@+id/action_view_book_review_to_profile"
             app:destination="@id/profile" />
         <argument
             android:name="selectedReview"
