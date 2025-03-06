@@ -9,7 +9,7 @@
         android:id="@+id/searchFragment"
         android:name="com.example.brook.modules.search.SearchFragment"
         android:label="fragment_search"
-        tools:layout="@layout/fragment_search" >
+        tools:layout="@layout/fragment_search">
         <action
             android:id="@+id/action_searchFragment_to_bookFragment"
             app:destination="@id/bookFragment" />
@@ -18,7 +18,7 @@
         android:id="@+id/profileReviews"
         android:name="com.example.brook.modules.myReviews.ProfileReviews"
         android:label="fragment_profile_reviews"
-        tools:layout="@layout/fragment_books_feed" >
+        tools:layout="@layout/fragment_books_feed">
         <action
             android:id="@+id/action_profileReviews_to_editBookReview"
             app:destination="@id/editBookReview" />
@@ -27,7 +27,11 @@
         android:id="@+id/feed"
         android:name="com.example.brook.modules.feed.Feed"
         android:label="fragment_books_feed"
-        tools:layout="@layout/fragment_books_feed" />
+        tools:layout="@layout/fragment_books_feed">
+        <action
+            android:id="@+id/action_feed_to_viewBookReview"
+            app:destination="@id/viewBookReview" />
+    </fragment>
     <fragment
         android:id="@+id/bookFragment"
         android:name="com.example.brook.modules.book.BookFragment"
@@ -55,7 +59,7 @@
         android:id="@+id/editBookReview"
         android:name="com.example.brook.modules.editBookReview.EditBookReview"
         android:label="fragment_edit_book_review"
-        tools:layout="@layout/fragment_edit_book_review" >
+        tools:layout="@layout/fragment_edit_book_review">
         <action
             android:id="@+id/action_edit_book_review_to_profile"
             app:destination="@id/profile" />
@@ -67,7 +71,7 @@
         android:id="@+id/viewBookReview"
         android:name="com.example.brook.modules.viewBookReview.ViewBookReview"
         android:label="fragment_view_book_review"
-        tools:layout="@layout/fragment_view_book_review" >
+        tools:layout="@layout/fragment_view_book_review">
         <action
             android:id="@+id/action_view_book_review_to_profile"
             app:destination="@id/profile" />
@@ -79,7 +83,7 @@
         android:id="@+id/profile"
         android:name="com.example.brook.modules.profile.Profile"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" >
+        tools:layout="@layout/fragment_profile">
         <action
             android:id="@+id/action_profile_to_edit_profile"
             app:destination="@id/edit_profile" />
@@ -91,7 +95,7 @@
         android:id="@+id/edit_profile"
         android:name="com.example.brook.modules.editProfile.EditProfile"
         android:label="fragment_edit_profile"
-        tools:layout="@layout/fragment_edit_profile" >
+        tools:layout="@layout/fragment_edit_profile">
         <action
             android:id="@+id/action_edit_profile_to_profile"
             app:destination="@id/profile" />

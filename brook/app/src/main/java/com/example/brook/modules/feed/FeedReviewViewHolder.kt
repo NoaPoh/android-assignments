@@ -8,6 +8,8 @@ import com.example.Brook.R
 import com.example.brook.data.review.Review
 import com.example.brook.data.user.User
 import com.squareup.picasso.Picasso
+import androidx.navigation.findNavController
+import com.example.brook.modules.feed.FeedDirections
 
 class FeedReviewViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -20,17 +22,19 @@ class FeedReviewViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun bind(review: Review?, user: User?) {
         if (review != null && user != null) {
-            Picasso.get()
-                .load(review.reviewImage)
-                .into(reviewImageView)
-            Picasso.get()
-                .load(user.profileImageUrl)
-                .into(profileImageView)
+            Picasso.get().load(review.reviewImage).into(reviewImageView)
+            Picasso.get().load(user.profileImageUrl).into(profileImageView)
             val userName = "${user.firstName} ${user.lastName}"
             profileName?.text = userName
             bookName?.text = review.bookName
             bookDescription?.text = review.bookDescription
             reviewGrade?.text = "Rating: ${review.grade} ★"
+
+            // Add click listener to navigate to ViewBookReview fragment
+            itemView.setOnClickListener {
+                val action = FeedDirections.actionFeedToViewBookReview(review)
+                itemView.findNavController().navigate(action)
+            }
         }
     }
 }

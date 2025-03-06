@@ -24,28 +24,27 @@
         android:id="@+id/textBookDescription"
         android:layout_width="352dp"
         android:layout_height="105dp"
-        android:layout_marginTop="88dp"
         android:background="@drawable/rounded_edittext"
+        android:gravity="center_vertical"
         android:padding="10dp"
         android:text="Your review"
         android:textColor="#000000"
         android:textStyle="bold"
-        android:gravity="center_vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bookPicButton" />
-
-
+        app:layout_constraintTop_toBottomOf="@+id/bookPic"
+        app:layout_constraintVertical_bias="0.488" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/saveButton"
+        app:layout_constraintBottom_toTopOf="@+id/textBookDescription"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layoutTextBookDescription"
+        app:layout_constraintTop_toBottomOf="@+id/bookPic"
         app:layout_constraintVertical_bias="0.523">
 
         <ImageView
@@ -86,8 +85,7 @@
             android:clickable="false"
             android:focusable="false"
             android:src="@drawable/baseline_empty_star_border_24"
-            android:tag="4"
- />
+            android:tag="4" />
 
         <ImageView
             android:id="@+id/star5EditBookReview"

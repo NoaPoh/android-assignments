@@ -70,7 +70,7 @@ class EditBookReview : Fragment() {
         star4 = binding.star4EditBookReview
         star5 = binding.star5EditBookReview
 
-        viewModel = ViewModelProvider(this).get(EditBookReviewViewModel::class.java)
+        viewModel = ViewModelProvider(this)[EditBookReviewViewModel::class.java]
 
         initFields()
         defineUpdateButtonClickListener()
