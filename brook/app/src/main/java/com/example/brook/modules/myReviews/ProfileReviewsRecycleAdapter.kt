@@ -30,16 +30,13 @@ class ProfileReviewsRecycleAdapter(var reviews: MutableList<Review>?, var user: 
         holder.bind(review, user, {
             val action = ProfileReviewsDirections.actionProfileReviewsToEditBookReview(review!!)
             Navigation.findNavController(holder.itemView).navigate(action)
-        },
-            {
-                ReviewModel.instance.deleteReview(review) {
-                    Toast.makeText(
-                        holder.itemView.context,
-                        "Review deleted!",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            })
+        }, {
+            ReviewModel.instance.deleteReview(review) {
+                Toast.makeText(
+                    holder.itemView.context, "Review deleted!", Toast.LENGTH_SHORT
+                ).show()
+            }
+        })
     }
 
 }

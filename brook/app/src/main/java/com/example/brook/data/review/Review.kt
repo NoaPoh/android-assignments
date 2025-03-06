@@ -25,15 +25,13 @@ data class Review(
         var lastUpdated: Long
             get() {
                 return BrookApplication.Globals.appContext?.getSharedPreferences(
-                        "TAG",
-                        Context.MODE_PRIVATE
-                    )?.getLong(REVIEW_LAST_UPDATED, 0) ?: 0
+                    "TAG", Context.MODE_PRIVATE
+                )?.getLong(REVIEW_LAST_UPDATED, 0) ?: 0
             }
             set(value) {
                 BrookApplication.Globals?.appContext?.getSharedPreferences(
-                        "TAG",
-                        Context.MODE_PRIVATE
-                    )?.edit()?.putLong(REVIEW_LAST_UPDATED, value)?.apply()
+                    "TAG", Context.MODE_PRIVATE
+                )?.edit()?.putLong(REVIEW_LAST_UPDATED, value)?.apply()
             }
 
         const val ID_KEY = "id"
