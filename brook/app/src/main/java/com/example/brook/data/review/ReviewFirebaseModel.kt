@@ -26,9 +26,12 @@ class ReviewFirebaseModel {
     }
 
 
+
+
     fun getAllReviews(since: Long, callback: (List<Review>) -> Unit) {
         db.collection(REVIEWS_COLLECTION_PATH)
-            .whereGreaterThanOrEqualTo(Review.LAST_UPDATED_KEY, Timestamp(since, 0)).get()
+//            .whereEqualTo(Review.IS_DELETED_KEY, false)
+            .whereGreaterThan(Review.LAST_UPDATED_KEY, Timestamp(since, 0)).get()
             .addOnCompleteListener {
                 when (it.isSuccessful) {
                     true -> {
@@ -42,6 +45,8 @@ class ReviewFirebaseModel {
 
                     false -> callback(listOf())
                 }
+            }.addOnFailureListener {
+                Log.d("ReviewFirebaseModel", "failed to get reviews: ${it.message}")
             }
     }
 
