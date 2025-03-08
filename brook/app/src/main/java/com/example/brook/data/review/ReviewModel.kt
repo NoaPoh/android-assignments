@@ -51,16 +51,21 @@ class ReviewModel private constructor() {
                     firebaseModel.getImage(review.id) { uri ->
                         reviewsExecutor.execute {
                             review.reviewImage = uri.toString()
-                            database.reviewDao().insert(review)
+                            val prevReview = database.reviewDao().getById(review.id)
+                            if (prevReview == null) {
+                                database.reviewDao().insert(review)
+                            }
                         }
                     }
 
                     review.timestamp?.let {
-                        if (time < it) time = review.timestamp ?: System.currentTimeMillis()
+                        time = maxOf(time, it)
                     }
+
                     Review.lastUpdated = time
                 }
             }
+
             reviewsListLoadingState.postValue(LoadingState.LOADED)
         }
     }

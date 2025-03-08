@@ -34,6 +34,12 @@ data class Review(
                 )?.edit()?.putLong(REVIEW_LAST_UPDATED, value)?.apply()
             }
 
+        fun resetLastUpdated() {
+            BrookApplication.Globals?.appContext?.getSharedPreferences(
+                "TAG", Context.MODE_PRIVATE
+            )?.edit()?.putLong(REVIEW_LAST_UPDATED, 0)?.apply()
+        }
+
         const val ID_KEY = "id"
         const val USER_ID_KEY = "userId"
         const val GRADE_KEY = "grade"

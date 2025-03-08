@@ -27,21 +27,25 @@ class ReviewFirebaseModel {
 
 
     fun getAllReviews(since: Long, callback: (List<Review>) -> Unit) {
+        val sinceTimestamp = Timestamp(since+1, 0)
         db.collection(REVIEWS_COLLECTION_PATH)
-            .whereGreaterThanOrEqualTo(Review.LAST_UPDATED_KEY, Timestamp(since, 0)).get()
+//            .whereEqualTo(Review.IS_DELETED_KEY, false)
+            .whereGreaterThan(Review.LAST_UPDATED_KEY, sinceTimestamp).get()
             .addOnCompleteListener {
                 when (it.isSuccessful) {
                     true -> {
                         val reviews: MutableList<Review> = mutableListOf()
                         for (json in it.result) {
-                            val student = Review.fromJSON(json.data)
-                            reviews.add(student)
+                            val review = Review.fromJSON(json.data)
+                            reviews.add(review)
                         }
                         callback(reviews)
                     }
 
                     false -> callback(listOf())
                 }
+            }.addOnFailureListener {
+                Log.d("ReviewFirebaseModel", "failed to get reviews: ${it.message}")
             }
     }
 
