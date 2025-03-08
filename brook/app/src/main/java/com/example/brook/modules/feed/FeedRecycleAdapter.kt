@@ -8,7 +8,7 @@ import com.example.Brook.R
 import com.example.brook.data.review.Review
 import com.example.brook.data.user.User
 
-class FeedRecycleAdapter(var reviews: MutableList<Review>?, var users: MutableList<User>?) :
+class FeedRecycleAdapter(private var reviews: MutableList<Review>?, var users: MutableList<User>?) :
 
     RecyclerView.Adapter<FeedReviewViewHolder>() {
 
@@ -27,4 +27,17 @@ class FeedRecycleAdapter(var reviews: MutableList<Review>?, var users: MutableLi
         Log.d("TAG", "reviews size ${reviews?.size}")
         holder.bind(review, users?.find { it.id == review?.userId })
     }
+
+    fun updateReviews(newReviews: List<Review>) {
+        reviews?.clear()
+        reviews?.addAll(newReviews)
+        notifyDataSetChanged()
+    }
+
+    fun updateUsers(newUsers: List<User>) {
+        users?.clear()
+        users?.addAll(newUsers)
+        notifyDataSetChanged()
+    }
+
 }

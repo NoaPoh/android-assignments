@@ -12,6 +12,9 @@ interface ReviewDao {
     @Query("SELECT * FROM review order by timestamp desc")
     fun getAll(): LiveData<MutableList<Review>>
 
+    @Query("SELECT * FROM review WHERE id = :id")
+    fun getById(id: String): Review?
+
     @Query("SELECT * FROM review WHERE userId = :userId order by timestamp desc")
     fun getReviewsByUserId(userId: String): LiveData<MutableList<Review>>
 

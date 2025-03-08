@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -44,27 +43,25 @@ class Feed : Fragment() {
         progressBar = view.findViewById(R.id.progressBar)
 
         viewModel.reviews.observe(viewLifecycleOwner) {
-            adapter?.reviews = it
-            adapter?.notifyDataSetChanged()
+            adapter?.updateReviews(it)
         }
 
         viewModel.users.observe(viewLifecycleOwner) {
-            adapter?.users = it
-            adapter?.notifyDataSetChanged()
+            adapter?.updateUsers(it)
         }
 
         binding.pullToRefresh.setOnRefreshListener {
             viewModel.reloadData()
         }
 
-        viewModel.reviewsListLoadingState.observe(viewLifecycleOwner, Observer { state ->
+        viewModel.reviewsListLoadingState.observe(viewLifecycleOwner) { state ->
             binding.pullToRefresh.isRefreshing = state == ReviewModel.LoadingState.LOADING
 
             when (state) {
                 ReviewModel.LoadingState.LOADING -> progressBar.visibility = View.VISIBLE
                 ReviewModel.LoadingState.LOADED -> progressBar.visibility = View.GONE
             }
-        })
+        }
 
         return view
     }
