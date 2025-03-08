@@ -43,9 +43,7 @@ class Profile : Fragment() {
 
         val imageRef = storage.reference.child("images/users/${auth.currentUser?.uid}")
         imageRef.downloadUrl.addOnSuccessListener { uri ->
-            Picasso.get()
-                .load(uri)
-                .into(profileImageView, object : com.squareup.picasso.Callback {
+            Picasso.get().load(uri).into(profileImageView, object : com.squareup.picasso.Callback {
                     override fun onSuccess() {
                         progressBar.visibility = View.GONE
                         profileImageView.visibility = View.VISIBLE
@@ -61,6 +59,15 @@ class Profile : Fragment() {
             Log.d("FirebaseStorage", "Error getting download image URI: $exception")
         }
 
+        val userNameTextView = root.findViewById<TextView>(R.id.UserNameTextView)
+        val currentUser = auth.currentUser
+
+        if (currentUser != null) {
+            userNameTextView.text = currentUser.displayName ?: "Unknown User"
+        } else {
+            userNameTextView.text = "Guest"
+        }
+
         root.findViewById<Button>(R.id.MyReviewsButton).setOnClickListener {
             Navigation.findNavController(root).navigate(R.id.action_profile_to_my_books_reviews)
         }
@@ -70,6 +77,8 @@ class Profile : Fragment() {
         root.findViewById<Button>(R.id.LogoutButton).setOnClickListener {
             logOut()
         }
+
+
         return root
 
     }
