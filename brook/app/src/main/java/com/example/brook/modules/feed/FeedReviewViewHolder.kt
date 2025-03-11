@@ -2,6 +2,7 @@ package com.example.brook.modules.feed
 
 import android.view.View
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.Brook.R
@@ -21,8 +22,22 @@ class FeedReviewViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun bind(review: Review?, user: User?) {
         if (review != null && user != null) {
-            Picasso.get().load(review.reviewImage).into(reviewImageView)
+            val progressBar: ProgressBar? = itemView.findViewById(R.id.imageLoadingProgressBar)
+            progressBar?.visibility = View.VISIBLE  // Show progress bar before loading starts
+
+
+            Picasso.get().load(review.reviewImage)
+                .into(reviewImageView, object : com.squareup.picasso.Callback {
+                    override fun onSuccess() {
+                        progressBar?.visibility = View.GONE  // Hide progress bar when image loads
+                    }
+
+                    override fun onError(e: Exception?) {
+                        progressBar?.visibility = View.GONE  // Hide progress bar if loading fails
+                    }
+                })
             Picasso.get().load(user.profileImageUrl).into(profileImageView)
+
             val userName = "${user.firstName} ${user.lastName}"
             profileName?.text = userName
             bookName?.text = review.bookName
@@ -30,7 +45,7 @@ class FeedReviewViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             reviewGrade?.text = "Rating: ${review.grade} ★"
 
             itemView.setOnClickListener {
-                val action = FeedDirections.actionFeedToViewBookReview(review)
+                val action = FeedFragmentDirections.actionFeedToViewBookReview(review)
                 itemView.findNavController().navigate(action)
             }
         }

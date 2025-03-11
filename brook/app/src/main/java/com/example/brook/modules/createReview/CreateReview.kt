@@ -12,6 +12,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -36,6 +37,9 @@ class CreateReview : Fragment() {
 
     private lateinit var imageSelectionLauncher: ActivityResultLauncher<Intent>
 
+    private lateinit var progressBar: ProgressBar;
+
+
     @RequiresExtension(extension = Build.VERSION_CODES.R, version = 2)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -49,6 +53,12 @@ class CreateReview : Fragment() {
         star3 = binding.star3CreateReview
         star4 = binding.star4CreateReview
         star5 = binding.star5CreateReview
+
+        progressBar = binding.progressBarCreateReview
+
+        viewModel.isLoading.observe(viewLifecycleOwner) { loading ->
+            progressBar.visibility = if (loading) View.VISIBLE else View.GONE
+        }
 
         setUI()
         defineSaveButtonClickListener()

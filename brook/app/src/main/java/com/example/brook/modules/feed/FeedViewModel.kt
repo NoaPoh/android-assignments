@@ -10,7 +10,7 @@ import com.example.brook.data.user.User
 import com.example.brook.data.user.UserModel
 
 
-class BooksFeedViewModel() : ViewModel() {
+class FeedViewModel() : ViewModel() {
 
     val reviews: LiveData<MutableList<Review>> = ReviewModel.instance.getAllReviews()
     val users: LiveData<MutableList<User>> = UserModel.instance.getAllUsers()
