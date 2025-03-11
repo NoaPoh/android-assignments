@@ -121,6 +121,11 @@ class CreateReview : Fragment() {
                 viewModel.createReview(choosedBook) {
                     findNavController().navigate(R.id.action_create_review_to_main_feed)
                     binding.saveButton.isClickable = true
+
+                    Toast.makeText(
+                        requireContext(),
+                        "Review created successfully",
+                        Toast.LENGTH_SHORT).show()
                 }
             } else {
                 // Handle the case when chooseBook argument is missing
