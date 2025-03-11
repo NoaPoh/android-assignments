@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/ReviewCardLayout"
     android:layout_width="match_parent"
@@ -12,8 +11,8 @@
         android:id="@+id/ReviewCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/black"
         android:layout_marginBottom="15dp"
+        android:background="@color/black"
         app:cardElevation="0dp"
         app:strokeColor="@color/stroke_color"
         app:strokeWidth="1dp">
@@ -21,16 +20,24 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@color/black">
+            android:background="@color/black"
+            android:orientation="vertical">
 
-            <!-- Media -->
             <ImageView
                 android:id="@+id/profileReviewCardImage"
                 android:layout_width="match_parent"
                 android:layout_height="194dp"
                 android:contentDescription="Card Image"
                 android:scaleType="centerCrop" />
+
+            <ProgressBar
+                android:id="@+id/imageLoadingProgressBar"
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:visibility="gone" />
+
             <TextView
                 android:id="@+id/BookName"
                 android:layout_width="wrap_content"
@@ -46,20 +53,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="Book description"
-                android:textColor="@color/theme_color"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
-
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/theme_color" />
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
-                android:orientation="vertical"
-                >
-
-
-                <!-- Title, secondary and supporting text -->
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -92,11 +94,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="Grade: "
-                    android:textColor="@color/theme_color"
                     android:textAppearance="?attr/textAppearanceBody2"
+                    android:textColor="@color/theme_color"
                     android:textSize="15sp"
                     android:textStyle="bold" />
-
 
 
             </LinearLayout>

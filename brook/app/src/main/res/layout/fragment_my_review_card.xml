@@ -24,13 +24,20 @@
             android:orientation="vertical"
             android:background="@color/black">
 
-            <!-- Media -->
             <ImageView
                 android:id="@+id/profileReviewCardImage"
                 android:layout_width="match_parent"
                 android:layout_height="194dp"
                 android:contentDescription="Card Image"
                 android:scaleType="centerCrop" />
+            <ProgressBar
+                android:id="@+id/imageLoadingProgressBar"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                style="?android:attr/progressBarStyleLarge"/>
+
             <TextView
                 android:id="@+id/BookName"
                 android:layout_width="wrap_content"

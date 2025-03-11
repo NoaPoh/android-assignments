@@ -9,12 +9,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.brook.data.review.ReviewModel
-import com.example.Brook.databinding.FragmentBooksFeedBinding
+import com.example.Brook.databinding.FragmentReviewsFeedBinding
 
 class ProfileReviews : Fragment() {
     private var reviewsRecyclerView: RecyclerView? = null
     private var adapter: ProfileReviewsRecycleAdapter? = null
-    private var _binding: FragmentBooksFeedBinding? = null
+    private var _binding: FragmentReviewsFeedBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: ProfileReviewsViewModel
 
@@ -23,14 +23,16 @@ class ProfileReviews : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentBooksFeedBinding.inflate(inflater, container, false)
+        _binding = FragmentReviewsFeedBinding.inflate(inflater, container, false)
         val view = binding.root
         viewModel = ViewModelProvider(this)[ProfileReviewsViewModel::class.java]
         reviewsRecyclerView = binding.Feed
         reviewsRecyclerView?.setHasFixedSize(true)
         reviewsRecyclerView?.layoutManager = LinearLayoutManager(context)
+
         adapter = ProfileReviewsRecycleAdapter(viewModel.reviews.value, viewModel.user.value)
         reviewsRecyclerView?.adapter = adapter
+
         viewModel.reviews.observe(viewLifecycleOwner) {
             adapter?.reviews = it
             adapter?.notifyDataSetChanged()

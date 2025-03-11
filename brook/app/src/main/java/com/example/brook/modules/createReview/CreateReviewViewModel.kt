@@ -20,10 +20,14 @@ class CreateReviewViewModel : ViewModel() {
     var imageError = MutableLiveData("")
     private val auth = Firebase.auth
 
+    var isLoading = MutableLiveData(false)
+
     fun createReview(
         bookName: String, createdReviewCallback: () -> Unit
     ) {
         if (validateReview()) {
+            isLoading.postValue(true)  // Show ProgressBar
+
             val reviewId = UUID.randomUUID().toString()
             val userId = auth.currentUser!!.uid
 
@@ -36,6 +40,7 @@ class CreateReviewViewModel : ViewModel() {
             )
 
             ReviewModel.instance.addReview(review, imageURI.value!!) {
+                isLoading.postValue(false)  // Hide ProgressBar after saving
                 createdReviewCallback()
             }
         }
