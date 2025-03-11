@@ -26,9 +26,7 @@ class FeedReviewViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             progressBar?.visibility = View.VISIBLE  // Show progress bar before loading starts
 
 
-
-            Picasso.get()
-                .load(review.reviewImage)
+            Picasso.get().load(review.reviewImage)
                 .into(reviewImageView, object : com.squareup.picasso.Callback {
                     override fun onSuccess() {
                         progressBar?.visibility = View.GONE  // Hide progress bar when image loads
