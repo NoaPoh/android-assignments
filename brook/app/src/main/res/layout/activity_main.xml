@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.brook.MainActivity">
+    tools:context="com.example.brook.MainActivity"
+    android:background="@color/background_color">
 
     <ImageView
         android:id="@+id/LogoImage"
@@ -37,16 +38,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/black"
+        android:background="@color/background_color"
         app:itemIconTint="@drawable/bottom_nav_item_selector"
-        app:itemTextColor="@drawable/bottom_nav_item_selector"
+        app:itemTextColor="@color/theme_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.992"
         app:menu="@menu/bottom_nav_menu"
         tools:layout_editor_absoluteX="-16dp" />
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

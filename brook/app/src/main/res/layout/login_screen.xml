@@ -38,9 +38,9 @@
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_edittext"
             android:hint="Email Address"
-            android:shadowColor="#000000"
-            android:textColor="#000000"
-            android:textColorHint="#000000"
+            android:shadowColor="@color/theme_color"
+            android:textColor="@color/theme_color"
+            android:textColorHint="@color/theme_color"
             android:textStyle="bold" />
 
 
@@ -67,9 +67,9 @@
             android:background="@drawable/rounded_edittext"
             android:hint="Password"
             android:inputType="textPassword"
-            android:shadowColor="#000000"
-            android:textColor="#000000"
-            android:textColorHint="#000000"
+            android:shadowColor="@color/theme_color"
+            android:textColor="@color/theme_color"
+            android:textColorHint="@color/theme_color"
             android:textStyle="bold" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -81,7 +81,7 @@
         android:layout_marginBottom="160dp"
         android:backgroundTint="@color/theme_color"
         android:text="Login"
-        android:textColor="@color/black"
+        android:textColor="@color/background_color"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -97,7 +97,7 @@
         android:layout_height="57dp"
         android:backgroundTint="@color/theme_color"
         android:text="Forgot password?"
-        android:textColor="@color/black"
+        android:textColor="@color/background_color"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -113,7 +113,7 @@
         android:layout_height="58dp"
         android:backgroundTint="@color/theme_color"
         android:text="Signup"
-        android:textColor="@color/black"
+        android:textColor="@color/background_color"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

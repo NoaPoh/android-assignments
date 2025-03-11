@@ -22,7 +22,7 @@
         android:id="@+id/profilePicButtonSignUpScreen"
         android:layout_width="106dp"
         android:layout_height="73dp"
-        android:backgroundTint="#000000"
+        android:backgroundTint="@color/theme_color"
         android:contentDescription="pick profile picture"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
@@ -51,9 +51,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_edittext"
-            android:shadowColor="#000000"
-            android:textColor="#000000"
-            android:textColorHint="#000000"
+            android:shadowColor="@color/theme_color"
+            android:textColor="@color/theme_color"
+            android:textColorHint="@color/theme_color"
             android:textStyle="bold"/>
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -77,9 +77,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_edittext"
-            android:shadowColor="#000000"
-            android:textColor="#000000"
-            android:textColorHint="#000000"
+            android:shadowColor="@color/theme_color"
+            android:textColor="@color/theme_color"
+            android:textColorHint="@color/theme_color"
             android:textStyle="bold" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -104,9 +104,9 @@
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_edittext"
             android:hint="Email"
-            android:shadowColor="#000000"
-            android:textColor="#000000"
-            android:textColorHint="#000000"
+            android:shadowColor="@color/theme_color"
+            android:textColor="@color/theme_color"
+            android:textColorHint="@color/theme_color"
             android:textStyle="bold" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -118,7 +118,7 @@
         android:layout_marginTop="12dp"
         android:background="@drawable/rounded_edittext"
         android:hint="Password"
-        android:textColorHint="#000000"
+        android:textColorHint="@color/theme_color"
         app:endIconMode="password_toggle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
@@ -132,9 +132,9 @@
             android:layout_marginTop="12dp"
             android:background="@drawable/rounded_edittext"
             android:inputType="textPassword"
-            android:shadowColor="#000000"
-            android:textColor="#000000"
-            android:textColorHint="#000000"
+            android:shadowColor="@color/theme_color"
+            android:textColor="@color/theme_color"
+            android:textColorHint="@color/theme_color"
             android:textStyle="bold" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -145,9 +145,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:background="@drawable/rounded_edittext"
-        android:shadowColor="#000000"
+        android:shadowColor="@color/theme_color"
         android:textColor="#0E0E0E"
-        android:textColorHint="#000000"
+        android:textColorHint="@color/theme_color"
         android:textStyle="bold"
         app:endIconMode="password_toggle"
         app:layout_constraintEnd_toEndOf="parent"
@@ -162,9 +162,9 @@
             android:layout_marginTop="12dp"
             android:background="@drawable/rounded_edittext"
             android:inputType="textPassword"
-            android:shadowColor="#000000"
-            android:textColor="#000000"
-            android:textColorHint="#000000"
+            android:shadowColor="@color/theme_color"
+            android:textColor="@color/theme_color"
+            android:textColorHint="@color/theme_color"
             android:textStyle="bold"
             android:hint="Confirm Password" />
 
@@ -176,7 +176,7 @@
         android:layout_height="67dp"
         android:backgroundTint="@color/theme_color"
         android:text="Sign up!"
-        android:textColor="@color/black"
+        android:textColor="@color/background_color"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -192,7 +192,7 @@
         android:layout_height="44dp"
         android:backgroundTint="@color/theme_color"
         android:text="already have an account?!"
-        android:textColor="@color/black"
+        android:textColor="@color/background_color"
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

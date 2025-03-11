@@ -71,7 +71,7 @@
             android:layout_height="67dp"
             android:backgroundTint="@color/theme_color"
             android:text="Create Review"
-            android:textColor="@color/black"
+            android:textColor="@color/background_color"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
