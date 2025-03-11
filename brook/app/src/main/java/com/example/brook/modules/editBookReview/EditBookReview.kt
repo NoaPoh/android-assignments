@@ -91,8 +91,12 @@ class EditBookReview : Fragment() {
         binding.saveButton.setOnClickListener {
             binding.saveButton.isClickable = false
             viewModel.updateReview {
+
                 findNavController().navigate(R.id.action_edit_book_review_to_profile)
                 binding.saveButton.isClickable = true
+                Toast.makeText(
+                    requireContext(), "Review updated successfully", Toast.LENGTH_SHORT
+                ).show()
             }
         }
     }
