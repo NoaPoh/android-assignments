@@ -18,16 +18,16 @@
         android:id="@+id/profileReviews"
         android:name="com.example.brook.modules.myReviews.ProfileReviews"
         android:label="fragment_profile_reviews"
-        tools:layout="@layout/fragment_books_feed">
+        tools:layout="@layout/fragment_reviews_feed">
         <action
             android:id="@+id/action_profileReviews_to_editBookReview"
             app:destination="@id/editBookReview" />
     </fragment>
     <fragment
         android:id="@+id/feed"
-        android:name="com.example.brook.modules.feed.Feed"
-        android:label="fragment_books_feed"
-        tools:layout="@layout/fragment_books_feed">
+        android:name="com.example.brook.modules.feed.FeedFragment"
+        android:label="fragment_reviews_feed"
+        tools:layout="@layout/fragment_reviews_feed">
         <action
             android:id="@+id/action_feed_to_viewBookReview"
             app:destination="@id/viewBookReview" />

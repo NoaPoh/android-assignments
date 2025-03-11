@@ -30,7 +30,7 @@ class FeedReviewViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             reviewGrade?.text = "Rating: ${review.grade} ★"
 
             itemView.setOnClickListener {
-                val action = FeedDirections.actionFeedToViewBookReview(review)
+                val action = FeedFragmentDirections.actionFeedToViewBookReview(review)
                 itemView.findNavController().navigate(action)
             }
         }

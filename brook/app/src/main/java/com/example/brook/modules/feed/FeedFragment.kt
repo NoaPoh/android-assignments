@@ -13,16 +13,16 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.Brook.R
-import com.example.Brook.databinding.FragmentBooksFeedBinding
+import com.example.Brook.databinding.FragmentReviewsFeedBinding
 import com.example.brook.data.review.ReviewModel
 
-class Feed : Fragment() {
+class FeedFragment : Fragment() {
 
     private var reviewsRecyclerView: RecyclerView? = null
     private var adapter: FeedRecycleAdapter? = null
-    private var _binding: FragmentBooksFeedBinding? = null
+    private var _binding: FragmentReviewsFeedBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: BooksFeedViewModel
+    private lateinit var viewModel: FeedViewModel
     private lateinit var progressBar: ProgressBar
 
     @SuppressLint("NotifyDataSetChanged")
@@ -30,10 +30,10 @@ class Feed : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentBooksFeedBinding.inflate(inflater, container, false)
+        _binding = FragmentReviewsFeedBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        viewModel = ViewModelProvider(this)[BooksFeedViewModel::class.java]
+        viewModel = ViewModelProvider(this)[FeedViewModel::class.java]
 
         reviewsRecyclerView = binding.Feed
         reviewsRecyclerView?.setHasFixedSize(true)
