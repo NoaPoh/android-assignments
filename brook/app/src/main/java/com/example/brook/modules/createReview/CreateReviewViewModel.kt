@@ -23,7 +23,7 @@ class CreateReviewViewModel : ViewModel() {
     var isLoading = MutableLiveData(false)
 
     fun createReview(
-        bookName: String, createdReviewCallback: () -> Unit
+        bookName: String, createdReviewCallback: () -> Unit, failedToCreateCallback: () -> Unit
     ) {
         if (validateReview()) {
             isLoading.postValue(true)  // Show ProgressBar
@@ -43,6 +43,8 @@ class CreateReviewViewModel : ViewModel() {
                 isLoading.postValue(false)  // Hide ProgressBar after saving
                 createdReviewCallback()
             }
+        } else {
+            failedToCreateCallback()
         }
     }
 
@@ -63,7 +65,6 @@ class CreateReviewViewModel : ViewModel() {
             valid = false
         }
         if (imageURI.value == null) {
-
             imageError.postValue("Please select an image")
             valid = false
         }
