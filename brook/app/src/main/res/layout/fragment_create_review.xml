@@ -6,12 +6,11 @@
     android:layout_height="match_parent"
     tools:context="com.example.brook.modules.signup.SignupActivity">
 
-
     <ImageButton
         android:id="@+id/bookPicButton"
         android:layout_width="172dp"
         android:layout_height="168dp"
-        android:layout_marginTop="196dp"
+        android:layout_marginTop="80dp"
         android:backgroundTint="@color/theme_color"
         android:contentDescription="pick profile picture"
         android:scaleType="centerCrop"
@@ -25,36 +24,32 @@
         android:id="@+id/layoutTextReviewDescriptionCreateReview"
         android:layout_width="352dp"
         android:layout_height="105dp"
-        android:layout_marginTop="88dp"
-        android:width="291dp"
-        android:height="62dp"
+        android:layout_marginTop="70dp"
         android:background="@drawable/rounded_edittext"
-
         android:inputType="text"
         android:padding="10dp"
         android:shadowColor="@color/theme_color"
         android:textColor="@color/theme_color"
         android:textColorHint="@color/theme_color"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bookPicButton">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bookPicButton"
+        app:layout_constraintHorizontal_bias="0.5">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextReviewDescriptionCreateReview"
-            android:layout_width="332dp"
-            android:layout_height="89dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:background="@drawable/rounded_edittext"
-            android:hint="Your review"
             android:ems="10"
+            android:hint="Your review"
             android:shadowColor="@color/theme_color"
             android:textColor="@color/theme_color"
             android:textColorHint="@color/theme_color"
-            android:textStyle="bold"
-            tools:layout_editor_absoluteX="50dp"
-            tools:layout_editor_absoluteY="256dp" />
+            android:textStyle="bold" />
     </com.google.android.material.textfield.TextInputLayout>
+
 
 
     <LinearLayout
@@ -129,17 +124,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layoutTextReviewDescriptionCreateReview"
         app:layout_constraintVertical_bias="0.415" />
+
     <ProgressBar
         android:id="@+id/progressBarCreateReview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="gone"
         android:indeterminate="true"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/saveButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.6"/>
-
+        app:layout_constraintVertical_bias="0.6" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

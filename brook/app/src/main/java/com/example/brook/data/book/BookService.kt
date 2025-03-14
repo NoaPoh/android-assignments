@@ -57,15 +57,15 @@ class BookService {
                     val bookData = response.body()
                     bookData?.let {
                         it.volumeInfo.title?.let { title ->
-                        val book = Book(
-                            id = it.id,
-                            title = it.volumeInfo.title,
-                            author = it.volumeInfo.authors?.get(0) ?: "Unknown Author",
-                            publishedDate = it.volumeInfo.publishedDate,
-                            description = it.volumeInfo.description,
-                            coverUrl = it.volumeInfo.imageLinks?.thumbnail
-                        )
-                        callback(mutableListOf(book))
+                            val book = Book(
+                                id = it.id,
+                                title = it.volumeInfo.title,
+                                author = it.volumeInfo.authors?.get(0) ?: "Unknown Author",
+                                publishedDate = it.volumeInfo.publishedDate,
+                                description = it.volumeInfo.description,
+                                coverUrl = "http://books.google.com/books/content?id=" + it.id + "&printsec=frontcover&img=1&zoom=1&fife=w400"
+                            )
+                            callback(mutableListOf(book))
                         } ?: callback(mutableListOf())
                     } ?: callback(mutableListOf())
                 } else {
@@ -83,9 +83,7 @@ class BookService {
         private const val BASE_URL = "https://www.googleapis.com/books/v1/"
 
         val retrofit: Retrofit by lazy {
-            Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
+            Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create())
                 .build()
         }
     }
