@@ -17,7 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/UserNameTextView"
-        android:layout_marginTop="148dp">
+        android:layout_marginTop="30dp">
 
         <ImageView
             android:id="@+id/ProfileImageView"
@@ -47,7 +47,7 @@
         android:id="@+id/UserNameTextView"
         android:layout_width="351dp"
         android:layout_height="50dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="30dp"
         android:text="Hi Sheleg!"
         android:textAlignment="center"
         android:textAppearance="@android:style/TextAppearance.Material.Large"
@@ -61,14 +61,14 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/MyReviewsButton"
-        android:layout_width="151dp"
+        android:layout_width="160dp"
         android:layout_height="93dp"
         android:layout_marginStart="8dp"
         android:backgroundTint="@color/theme_color"
         android:drawableLeft="@drawable/baseline_reviews_24"
         android:text="My Reviews"
-        android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textColor="@color/background_color"
+        android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -77,14 +77,14 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/EditProfileButton"
-        android:layout_width="151dp"
+        android:layout_width="160dp"
         android:layout_height="93dp"
         android:layout_marginEnd="8dp"
         android:backgroundTint="@color/theme_color"
         android:drawableLeft="@drawable/baseline_edit_24"
         android:text="Edit profile"
-        android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textColor="@color/background_color"
+        android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -101,7 +101,7 @@
         android:padding="12dp"
         android:text="Logout"
 
-        android:textColor="@color/black"
+        android:textColor="@color/background_color"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
