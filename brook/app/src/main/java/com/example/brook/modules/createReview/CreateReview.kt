@@ -14,6 +14,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresExtension
@@ -61,8 +62,11 @@ class CreateReview : Fragment() {
         }
 
         setUI()
-        defineSaveButtonClickListener()
-        definePickImageClickListener()
+
+        binding.saveButton.setOnClickListener {
+            this.onSaveReview()
+        }
+        defineImageSelectionCallBack()
         return view
     }
 
@@ -116,29 +120,25 @@ class CreateReview : Fragment() {
         viewModel.grade = clickedStarPosition
     }
 
-    @RequiresExtension(extension = Build.VERSION_CODES.R, version = 2)
-    private fun definePickImageClickListener() {
-        defineImageSelectionCallBack()
-    }
+    private fun onSaveReview() {
+        // Check if chooseBook argument is available
+        val choosedBook = args.bookName
 
-    private fun defineSaveButtonClickListener() {
-        binding.saveButton.setOnClickListener {
-            // Check if chooseBook argument is available
-            val choosedBook = args.bookName
+        if (choosedBook != null) {
+            binding.saveButton.isClickable = false
 
-            if (choosedBook != null) {
-                binding.saveButton.isClickable = false
-                viewModel.createReview(choosedBook) {
-                    findNavController().navigate(R.id.action_create_review_to_main_feed)
-                    binding.saveButton.isClickable = true
-                }
-            } else {
-                // Handle the case when chooseBook argument is missing
-                Log.e("create_review", "chooseBook argument is missing")
-                Toast.makeText(
-                    requireContext(), "Error: Choose Book argument is missing", Toast.LENGTH_SHORT
-                ).show()
-            }
+            viewModel.createReview(choosedBook, {
+                findNavController().navigate(R.id.action_create_review_to_main_feed)
+                binding.saveButton.isClickable = true
+            }, {
+                binding.saveButton.isClickable = true
+            })
+        } else {
+            // Handle the case when chooseBook argument is missing
+            Log.e("create_review", "chooseBook argument is missing")
+            Toast.makeText(
+                requireContext(), "Error: Choose Book argument is missing", Toast.LENGTH_SHORT
+            ).show()
         }
     }
 
@@ -157,7 +157,7 @@ class CreateReview : Fragment() {
         }
 
         imageSelectionLauncher =
-            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
                 try {
                     val imageUri: Uri = result.data?.data!!
                     val imageSize = getImageSize(imageUri)
