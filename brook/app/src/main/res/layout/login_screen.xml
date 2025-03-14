@@ -6,31 +6,35 @@
     android:layout_height="match_parent"
     tools:context="com.example.brook.modules.login.LoginActivity">
 
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="408dp"
-        android:layout_height="217dp"
-        android:layout_marginTop="50dp"
+    <TextView
+        android:id="@+id/logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/emblema_one"
+        android:gravity="center"
+        android:text="Brooks"
+        android:textColor="@color/theme_color"
+        android:textSize="50sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/android_logo" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/layoutLoginTextEmail"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="60dp"
         android:background="@drawable/rounded_edittext"
         android:inputType="textEmailAddress"
         app:endIconMode="clear_text"
         app:errorEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2">
+        app:layout_constraintTop_toBottomOf="@+id/logo"
+        app:layout_constraintBottom_toTopOf="@+id/layoutLoginTextPassword">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editLoginTextEmailAddress"
@@ -43,14 +47,13 @@
             android:textColorHint="@color/theme_color"
             android:textStyle="bold" />
 
-
     </com.google.android.material.textfield.TextInputLayout>
-
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/layoutLoginTextPassword"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
+
         android:background="@drawable/rounded_edittext"
         android:inputType="textPassword"
         app:endIconMode="password_toggle"
@@ -78,18 +81,17 @@
         android:id="@+id/LoginButton"
         android:layout_width="330dp"
         android:layout_height="67dp"
-        android:layout_marginBottom="160dp"
+        android:layout_marginBottom="20dp"
         android:backgroundTint="@color/theme_color"
         android:text="Login"
         android:textColor="@color/background_color"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/ForgotPasswordPageButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layoutLoginTextPassword"
-        app:layout_constraintVertical_bias="0.851" />
+        app:layout_constraintTop_toBottomOf="@+id/layoutLoginTextPassword" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/ForgotPasswordPageButton"
@@ -100,7 +102,7 @@
         android:textColor="@color/background_color"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/toSignupPageButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.478"
         app:layout_constraintStart_toStartOf="parent"
