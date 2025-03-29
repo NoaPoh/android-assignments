@@ -95,16 +95,6 @@ class CreateReview : Fragment() {
         binding.star3CreateReview.setOnClickListener { onStarClicked(star3) }
         binding.star4CreateReview.setOnClickListener { onStarClicked(star4) }
         binding.star5CreateReview.setOnClickListener { onStarClicked(star5) }
-
-        viewModel.bookDescriptionError.observe(viewLifecycleOwner) {
-            if (it.isNotEmpty()) binding.layoutTextReviewDescriptionCreateReview.error = it
-        }
-
-        viewModel.imageError.observe(viewLifecycleOwner) {
-            if (it.isNotEmpty()) Toast.makeText(
-                requireContext(), viewModel.imageError.value, Toast.LENGTH_SHORT
-            ).show()
-        }
     }
 
     private fun onStarClicked(clickedStar: ImageView) {
@@ -120,30 +110,28 @@ class CreateReview : Fragment() {
     }
 
     private fun onSaveReview() {
-        // Check if chooseBook argument is available
         val choosedBook = args.bookName
 
         if (choosedBook != null) {
             binding.saveButton.isClickable = false
 
             viewModel.createReview(choosedBook, {
-                Toast.makeText(
-                    requireContext(),
-                    "Review created successfully",
-                    Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Review created successfully", Toast.LENGTH_SHORT)
+                    .show()
                 findNavController().navigate(R.id.action_create_review_to_main_feed)
                 binding.saveButton.isClickable = true
-            }, {
+            }, { errorMessage ->
+                Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_LONG).show()
                 binding.saveButton.isClickable = true
             })
         } else {
-            // Handle the case when chooseBook argument is missing
             Log.e("create_review", "chooseBook argument is missing")
             Toast.makeText(
                 requireContext(), "Error: Choose Book argument is missing", Toast.LENGTH_SHORT
             ).show()
         }
     }
+
 
     @SuppressLint("Recycle")
     private fun getImageSize(uri: Uri?): Long {
