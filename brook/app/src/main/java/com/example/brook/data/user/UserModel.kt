@@ -21,13 +21,13 @@ class UserModel private constructor() {
 
     fun getAllUsers(): LiveData<MutableList<User>> {
         refreshAllUsers()
-        return users ?: database.userDto().getAllUsers()
+        return users ?: database.userDao().getAllUsers()
     }
 
     fun getCurrentUser(): LiveData<User> {
         Log.i("UserModel", "getCurrentUser: ${Firebase.auth.currentUser?.uid}")
         Log.i("UserModel", "getCurrentUser: ${Firebase.auth.currentUser?.uid}")
-        return database.userDto().getUserById(Firebase.auth.currentUser?.uid!!)
+        return database.userDao().getUserById(Firebase.auth.currentUser?.uid!!)
     }
 
     fun refreshAllUsers() {
@@ -39,7 +39,7 @@ class UserModel private constructor() {
                 firebaseModel.getImage(user.id) { uri ->
                     usersExecutor.execute {
                         user.profileImageUrl = uri.toString()
-                        database.userDto().insertUser(user)
+                        database.userDao().insertUser(user)
                     }
                 }
 

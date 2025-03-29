@@ -34,7 +34,6 @@ class BookFragment : Fragment() {
         viewModel.setBook(args.chooseBook)
 
         viewModel.bookDetailsData.observe(viewLifecycleOwner) {
-            Log.d("TAG", "books size ${it?.size}")
             setBookDetails(root)
             progressBar.visibility = View.GONE
         }
@@ -52,9 +51,9 @@ class BookFragment : Fragment() {
         val bookImage: ImageView = root.findViewById(R.id.bookImage)
 
         viewModel.bookDetailsData.let { book ->
-            bookName.text = book.value?.get(0)?.title
-            bookAuthor.text = "By " + book.value?.get(0)?.author
-            Picasso.get().load(book.value?.get(0)?.coverUrl).into(bookImage)
+            bookName.text = book.value?.title
+            bookAuthor.text = "By " + book.value?.author
+            Picasso.get().load(book.value?.coverUrl).into(bookImage)
             bookAuthor.movementMethod = ScrollingMovementMethod()
         }
     }
@@ -62,7 +61,7 @@ class BookFragment : Fragment() {
     private fun onCreateReviewButtonClick(view: View) {
         viewModel.bookDetailsData.let { book ->
             val action = BookFragmentDirections.actionBookFragmentToCreateReview(
-                book.value?.get(0)?.title ?: "Book"
+                book.value?.title ?: "Book"
             )
             Navigation.findNavController(root.findViewById<Button>(R.id.AddReviewButton))
                 .navigate(action)
