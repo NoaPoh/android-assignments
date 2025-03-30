@@ -18,6 +18,8 @@
         android:layout_marginBottom="30dp"
         android:background="@drawable/search_view"
         android:backgroundTint="@color/theme_color"
+        android:textColor="@color/background_color"
+        android:textColorHint="@color/background_color"
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:iconifiedByDefault="false"
